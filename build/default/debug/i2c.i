@@ -1,4 +1,4 @@
-# 1 "newmain.c"
+# 1 "i2c.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "newmain.c" 2
+# 1 "i2c.c" 2
+# 1 "./i2c.h" 1
+
 
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 1 3
@@ -1855,121 +1857,68 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 2 3
-# 3 "newmain.c" 2
+# 4 "./i2c.h" 2
 
 
 
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config BOREN = ON
-#pragma config LVP = OFF
-#pragma config CPD = OFF
-#pragma config WRT = OFF
-#pragma config CP = OFF
-# 96 "newmain.c"
-unsigned char write_cmd=0xfe;
-unsigned char read_cmd=0xfe;
 
-void waitmssp()
-{
+
+
+void I2C_Init(const unsigned long c);
+void I2C_Wait(void);
+void I2C_Start(void);
+void I2C_RepeatedStart(void);
+void I2C_Stop(void);
+void I2C_Write(unsigned data);
+unsigned short I2C_Read(unsigned short ack);
+# 1 "i2c.c" 2
+
+
+void I2C_Init(const unsigned long c) {
+    SSPCON = 0b00101000;
+    SSPCON2 = 0;
+    SSPADD = (20000000 / (4 * c)) - 1;
+    SSPSTAT = 0;
+
+    TRISC3 = 0;
+    TRISC4 = 0;
+}
+
+void I2C_Wait(void) {
+    while ((SSPCON2 & 0x1F) || (SSPSTAT & 0x04));
+}
+
+void I2C_Start(void) {
+    I2C_Wait();
+    SEN = 1;
+}
+
+void I2C_RepeatedStart(void) {
+    I2C_Wait();
+    RSEN = 1;
+}
+
+void I2C_Stop(void) {
+    I2C_Wait();
+    PEN = 1;
+}
+
+void I2C_Write(unsigned data) {
+    I2C_Wait();
+    SSPBUF = data;
     while(!SSPIF);
-    SSPIF=0;
+    SSPIF = 0;
 }
 
-void i2c_init()
-{
-    TRISC3=TRISC4=1;
-    SSPCON=0x28;
-    SSPADD=((100000/4)/100)-1;
-}
-void i2c_start()
-{
-    SEN=1;
-    waitmssp();
-}
-void i2c_stop()
-{
-    PEN=1;
-    waitmssp();
-}
-void i2c_restart()
-{
-    RSEN=1;
-    waitmssp();
-}
-void i2c_ack()
-{
-    ACKDT=0;
-    ACKEN=1;
-    waitmssp();
-}
-void i2c_nak()
-{
-    ACKDT=1;
-    ACKEN=1;
-    waitmssp();
-}
-
-void i2c_send(unsigned char dat)
-{
-L1: SSPBUF=dat;
-    waitmssp();
-    while(ACKSTAT){i2c_restart;goto L1;}
-}
-void i2c_send_byte(unsigned char addr,unsigned char *count)
-{
-    i2c_start();
-    i2c_send(write_cmd);
-    i2c_send(addr>>8);
-    i2c_send(addr);
-    while(*count) {
-        i2c_send(*count++);
-    }
-    i2c_stop();
-}
-unsigned char i2c_read()
-{
-    RCEN=1;
-    waitmssp();
-    return SSPBUF;
-}
-unsigned char i2c_read_byte(unsigned char addr)
-{
-    unsigned char rec;
-L: i2c_restart();
-    SSPBUF=write_cmd;
-    waitmssp();
-    while(ACKSTAT){goto L;}
-    i2c_send(addr>>8);
-    i2c_send(addr);
-    i2c_restart();
-    i2c_send(read_cmd);
-    rec=i2c_read();
-    i2c_nak();
-    i2c_stop();
-    return rec;
-}
-
-void main()
-{
-  nRBPU = 0;
-  TRISB = 0x00;
-  TRISD = 0x00;
-  PORTD = 0x00;
-  i2c_init();
-  while(1)
-  {
-    PORTB=0XFF;
-    i2c_start();
-    i2c_send(0x30);
-
-    _delay((unsigned long)((500)*(20000000/4000.0)));
-    PORTB=0X00;
-
-
-
-
-    _delay((unsigned long)((500)*(20000000/4000.0)));
-  }
+unsigned short I2C_Read(unsigned short ack) {
+    unsigned short recvData;
+    I2C_Wait();
+    RCEN = 1;
+    while(!SSPIF);
+    SSPIF = 0;
+    recvData = SSPBUF;
+    I2C_Wait();
+    ACKDT = (ack)?0:1;
+    ACKEN = 1;
+    return recvData;
 }

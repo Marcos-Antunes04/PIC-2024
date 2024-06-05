@@ -13,24 +13,38 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"3 C:\Users\xboxw\MPLABXProjects\pic_project.X\i2c.c
-[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
-"13
+"13 C:\Users\xboxw\MPLABXProjects\pic_project.X\i2c.c
 [v _I2C_Wait I2C_Wait `(v  1 e 1 0 ]
-"17
-[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
-"32
-[v _I2C_Write I2C_Write `(v  1 e 1 0 ]
-"14 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"99 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+[v _waitmssp waitmssp `(v  1 e 1 0 ]
+"105
+[v _i2c_init i2c_init `(v  1 e 1 0 ]
+"111
+[v _i2c_start i2c_start `(v  1 e 1 0 ]
+"116
+[v _i2c_stop i2c_stop `(v  1 e 1 0 ]
+"121
+[v _i2c_restart i2c_restart `(v  1 e 1 0 ]
+"132
+[v _i2c_nak i2c_nak `(v  1 e 1 0 ]
+"139
+[v _i2c_send i2c_send `(v  1 e 1 0 ]
+"156
+[v _i2c_read i2c_read `(uc  1 e 1 0 ]
+"179
 [v _main main `(v  1 e 1 0 ]
 "216 C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"340
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "808
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "815
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "1375
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1499
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1754
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
 "1823
@@ -41,6 +55,8 @@
 [v _ACKDT ACKDT `VEb  1 e 0 @1165 ]
 "2381
 [v _ACKEN ACKEN `VEb  1 e 0 @1164 ]
+"2384
+[v _ACKSTAT ACKSTAT `VEb  1 e 0 @1166 ]
 "2636
 [v _PEN PEN `VEb  1 e 0 @1162 ]
 "2741
@@ -55,42 +71,33 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "2975
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"14 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"3083
+[v _nRBPU nRBPU `VEb  1 e 0 @1039 ]
+"179 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _main main `(v  1 e 1 0 ]
 {
-"37
+"200
 } 0
-"32 C:\Users\xboxw\MPLABXProjects\pic_project.X\i2c.c
-[v _I2C_Write I2C_Write `(v  1 e 1 0 ]
+"111
+[v _i2c_start i2c_start `(v  1 e 1 0 ]
 {
-[v I2C_Write@data data `ui  1 p 2 0 ]
-"37
+"115
 } 0
-"17
-[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
+"139
+[v _i2c_send i2c_send `(v  1 e 1 0 ]
 {
-"20
+[v i2c_send@dat dat `uc  1 a 1 wreg ]
+[v i2c_send@dat dat `uc  1 a 1 wreg ]
+[v i2c_send@dat dat `uc  1 a 1 0 ]
+"144
 } 0
-"13
-[v _I2C_Wait I2C_Wait `(v  1 e 1 0 ]
+"99
+[v _waitmssp waitmssp `(v  1 e 1 0 ]
 {
-"15
+"103
 } 0
-"3
-[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+"105
+[v _i2c_init i2c_init `(v  1 e 1 0 ]
 {
-[v I2C_Init@c c `DCul  1 p 4 0 ]
-"11
-} 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-[v ___lldiv __lldiv `(ul  1 e 4 0 ]
-{
-"10
-[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
-"11
-[v ___lldiv@counter counter `uc  1 a 1 13 ]
-"5
-[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
-[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
-"30
+"110
 } 0

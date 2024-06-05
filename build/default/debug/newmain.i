@@ -7,14 +7,6 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "newmain.c" 2
-#pragma config FOSC = EXTRC
-#pragma config WDTE = ON
-#pragma config PWRTE = OFF
-#pragma config BOREN = ON
-#pragma config LVP = ON
-#pragma config CPD = OFF
-#pragma config WRT = OFF
-#pragma config CP = OFF
 
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 1 3
@@ -1863,17 +1855,96 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 2 3
-# 10 "newmain.c" 2
+# 3 "newmain.c" 2
 
-void main(void)
-{
-TRISB=0x00;
-while(1)
-{
-RB0 = 1 ;
-_delay((unsigned long)((500)*(20000000/4000.0)));
-RB0 = 0 ;
-_delay((unsigned long)((500)*(20000000/4000.0)));
+
+
+#pragma config FOSC = HS
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config BOREN = ON
+#pragma config LVP = OFF
+#pragma config CPD = OFF
+#pragma config WRT = OFF
+#pragma config CP = OFF
+
+
+
+void I2C_Master_Init(const unsigned long c){
+  SSPCON = 0b00101000;
+
+  SSPADD = (20000000/(4*c))-1;
+
+
+  TRISCbits.TRISC3 = 1;
+  TRISCbits.TRISC4 = 1;
 }
-return;
+
+void I2C_Master_Wait()
+{
+
+
+  while ((SSPSTAT & 0x04) | (SSPCON2 & 0x1F));
+}
+
+void I2C_Master_Start()
+{
+  SSPCON2bits.SEN=1;
+  I2C_Master_Wait();
+}
+
+void I2C_Master_RepeatedStart()
+{
+  SSPCON2bits.RSEN = 1;
+  I2C_Master_Wait();
+}
+
+void I2C_Master_Stop()
+{
+  SSPCON2bits.PEN = 1;
+  I2C_Master_Wait();
+}
+
+void I2C_Master_Write(unsigned char d)
+{
+  SSPBUF = d;
+  I2C_Master_Wait();
+
+}
+
+unsigned short I2C_Master_Read(uint8_t a)
+{
+  unsigned short temp;
+  I2C_Master_Wait();
+  RCEN = 1;
+  I2C_Master_Wait();
+  temp = SSPBUF;
+  I2C_Master_Wait();
+  ACKDT = (a)?0:1;
+  ACKEN = 1;
+  return temp;
+}
+
+void main()
+{
+  nRBPU = 0;
+  TRISB = 0x00;
+  TRISD = 0x00;
+  PORTD = 0x00;
+  I2C_Master_Init(100000);
+  while(1)
+  {
+    PORTB=0XFF;
+    I2C_Master_Start();
+    I2C_Master_Write(0x30);
+    I2C_Master_Write(PORTB);
+    I2C_Master_Stop();
+    _delay((unsigned long)((500)*(20000000/4000.0)));
+    PORTB=0X00;
+    I2C_Master_Start();
+
+
+    I2C_Master_Stop();
+    _delay((unsigned long)((500)*(20000000/4000.0)));
+  }
 }
