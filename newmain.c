@@ -73,6 +73,10 @@ unsigned short I2C_Master_Read(uint8_t a){
   ACKEN = 1;
   return temp;
 }
+void ADC_Setup(void){
+  ADCON0 = 0X81;
+  ADCON1 = 0b10000000;
+}
 uint16_t ADC_Read(int channel){
     if(channel > 7)     // Channel range is 0 to 7
         return 0;
@@ -86,9 +90,11 @@ uint16_t ADC_Read(int channel){
     while(GO_DONE);
     return (uint16_t)((ADRESH << 8) + ADRESL);
 }
+/* Global variable declarations*/
+uint16_t adc_value = 0;
 
 void main()
-{
+{   
   // TRIS and PORT registers definitions
   TRISA = 0XFF;
   TRISB = 0x00;                 //PORTB as output
@@ -97,14 +103,22 @@ void main()
   PORTB = 0X00;
   
   // A/D converter module is powered up and ADC clock = Fosc/4
-  ADCON0 = 0X81;
-  ADCON1 = 0b10000000;
-  
+  ADC_Setup();
   
   while(1){
-      I2C_Master_Init(100000);
-      I2C_Master_Start();
-      I2C_Master_Write(0x33);
-      __delay_ms(200);
+      // I2C_Master_Init(100000);
+      // I2C_Master_Start();
+      // I2C_Master_Write(0x33);
+      // __delay_ms(200);
+      
+      adc_value = ADC_Read(0);
+      
+      // /*
+      if(adc_value > (uint16_t) 512)
+          PORTB=0xff;
+      else
+          PORTB=0x00;
+      
+      // */
   }
 }
