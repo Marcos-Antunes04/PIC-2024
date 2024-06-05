@@ -13,82 +13,79 @@
 #pragma config CP = OFF 
 #define _XTAL_FREQ 20000000
 
-
-void I2C_Master_Init(const unsigned long c){
-  SSPCON = 0b00101000;
-  //SSPCON2 = 0X00;
-  SSPADD = (_XTAL_FREQ/(4*c))-1;
-  //SSPSTAT = 0;
-  //SSPSTAT |= (0b01000000);
-  TRISCbits.TRISC3 = 1;        //Setting as input
-  TRISCbits.TRISC4 = 1;        //Setting as input
+void blink_led_nx(int n){
+    for(int i = 0; i < n;i++){
+        PORTB = 0xff;
+        __delay_ms(500);
+        PORTB = 0x00;
+        __delay_ms(500); 
+    }
 }
 
-void I2C_Master_Wait()
-{
-  //while(!SSPIF);
-  //SSPIF=0;
-  while ((SSPSTAT & 0x04) | (SSPCON2 & 0x1F));
+void I2C_Master_Init(const unsigned long c){
+  TRISCbits.TRISC3 = 1;        //Setting as input
+  TRISCbits.TRISC4 = 1;        //Setting as input
+  SSPCON = 0b00101000;
+  SSPADD = (_XTAL_FREQ/(4*c))-1;
+
+}
+
+void waitmssp(){
+    while(!SSPIF | !SSPBUF);
+    SSPIF=0;
 }
 
 void I2C_Master_Start()
 {
-  SSPCON2bits.SEN=1;
-  I2C_Master_Wait();
+  SSPCON2bits.SEN = 1;
+  while(SEN);
+  PIR1bits.SSPIF = 0;
+  // waitmssp();
 }
 
 void I2C_Master_RepeatedStart()
 {
   SSPCON2bits.RSEN = 1;
-  I2C_Master_Wait();
+  waitmssp();
 }
 
 void I2C_Master_Stop()
 {
   SSPCON2bits.PEN = 1;
-  I2C_Master_Wait();
+  while(PEN);
+  return;
 }
 
-void I2C_Master_Write(unsigned char d)
-{
+void I2C_Master_Write(unsigned char d){
   SSPBUF = d;
-  I2C_Master_Wait();
-  //while(ACKSTAT);
+  waitmssp();
 }
 
-unsigned short I2C_Master_Read(uint8_t a)
-{
+unsigned short I2C_Master_Read(uint8_t a){
   unsigned short temp;
-  I2C_Master_Wait();
+  waitmssp();
   RCEN = 1;
-  I2C_Master_Wait();
+  waitmssp();
   temp = SSPBUF;
-  I2C_Master_Wait();
+  waitmssp();
   ACKDT = (a)?0:1;
   ACKEN = 1;
   return temp;
 }
 
+
 void main()
 {
-  nRBPU = 0;                    //Enable PORTB internal pull up resistor
   TRISB = 0x00;                 //PORTB as output
   TRISD = 0x00;                 //PORTD as output
   PORTD = 0x00;                 //All LEDs OFF
-  I2C_Master_Init(100000);      //Initialize I2C Master with 100KHz clock
-  while(1)
-  {
-    PORTB=0XFF;                 //All LEDs ON
-    I2C_Master_Start();         //Start condition
-    I2C_Master_Write(0x30);     //7 bit address + Write
-    I2C_Master_Write(PORTB);    //Write data
-    I2C_Master_Stop();          //Stop condition
-    __delay_ms(500);
-    PORTB=0X00;                 //All LEDs OFF
-    I2C_Master_Start();         //Start condition
-    //I2C_Master_Write(0x31);     //7 bit address + Read
-    //PORTD = I2C_Master_Read(0); //Read + Acknowledge
-    I2C_Master_Stop();          //Stop condition
-    __delay_ms(500);
+  PORTB = 0X00;
+  
+  
+  while(1){
+      I2C_Master_Init(100000);
+      I2C_Master_Start();
+      I2C_Master_Write(0x33);
+      __delay_ms(200);
   }
 }

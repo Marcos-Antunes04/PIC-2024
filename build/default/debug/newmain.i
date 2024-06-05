@@ -1869,82 +1869,100 @@ extern __bank0 __bit __timeout;
 #pragma config CP = OFF
 
 
-
-void I2C_Master_Init(const unsigned long c){
-  SSPCON = 0b00101000;
-
-  SSPADD = (20000000/(4*c))-1;
-
-
-  TRISCbits.TRISC3 = 1;
-  TRISCbits.TRISC4 = 1;
+void blink_led_nx(int n){
+    for(int i = 0; i < n;i++){
+        PORTB = 0xff;
+        _delay((unsigned long)((500)*(20000000/4000.0)));
+        PORTB = 0x00;
+        _delay((unsigned long)((500)*(20000000/4000.0)));
+    }
 }
 
-void I2C_Master_Wait()
-{
+void I2C_Master_Init(const unsigned long c){
+  TRISCbits.TRISC3 = 1;
+  TRISCbits.TRISC4 = 1;
+  SSPCON = 0b00101000;
+  SSPADD = (20000000/(4*c))-1;
 
+}
 
-  while ((SSPSTAT & 0x04) | (SSPCON2 & 0x1F));
+void waitmssp(){
+    while(!SSPIF);
+    SSPIF=0;
 }
 
 void I2C_Master_Start()
 {
-  SSPCON2bits.SEN=1;
-  I2C_Master_Wait();
+  SSPCON2bits.SEN = 1;
+  while(SEN);
+  PIR1bits.SSPIF = 0;
+  waitmssp();
 }
 
 void I2C_Master_RepeatedStart()
 {
   SSPCON2bits.RSEN = 1;
-  I2C_Master_Wait();
+  waitmssp();
 }
 
 void I2C_Master_Stop()
 {
   SSPCON2bits.PEN = 1;
-  I2C_Master_Wait();
+  while(PEN);
+  return;
+
 }
 
 void I2C_Master_Write(unsigned char d)
 {
   SSPBUF = d;
-  I2C_Master_Wait();
-
+  waitmssp();
 }
 
 unsigned short I2C_Master_Read(uint8_t a)
 {
   unsigned short temp;
-  I2C_Master_Wait();
+  waitmssp();
   RCEN = 1;
-  I2C_Master_Wait();
+  waitmssp();
   temp = SSPBUF;
-  I2C_Master_Wait();
+  waitmssp();
   ACKDT = (a)?0:1;
   ACKEN = 1;
   return temp;
 }
 
+void i2c_init(){
+    TRISC = 0xff;
+    SSPCON = 0x28;
+}
+
+void i2c_write(char data){
+    SSPCON2bits.SEN = 1;
+    while(SEN);
+    PIR1bits.SSPIF = 0;
+
+    SSPBUF = 0xAA;
+
+    while(!SSPIF);
+    PIR1bits.SSPIF = 0;
+# 101 "newmain.c"
+    SSPCON2bits.PEN = 1;
+    while(PEN);
+    return;
+
+}
+
 void main()
 {
-  nRBPU = 0;
   TRISB = 0x00;
   TRISD = 0x00;
   PORTD = 0x00;
-  I2C_Master_Init(100000);
-  while(1)
-  {
-    PORTB=0XFF;
-    I2C_Master_Start();
-    I2C_Master_Write(0x30);
-    I2C_Master_Write(PORTB);
-    I2C_Master_Stop();
-    _delay((unsigned long)((500)*(20000000/4000.0)));
-    PORTB=0X00;
-    I2C_Master_Start();
 
-
-    I2C_Master_Stop();
-    _delay((unsigned long)((500)*(20000000/4000.0)));
+  while(1){
+      blink_led_nx(2);
+      I2C_Master_Init(100000);
+      I2C_Master_Start();
+      I2C_Master_Write(0x33);
   }
 }

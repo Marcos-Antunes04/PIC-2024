@@ -15,29 +15,43 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "13 C:\Users\xboxw\MPLABXProjects\pic_project.X\i2c.c
 [v _I2C_Wait I2C_Wait `(v  1 e 1 0 ]
-"17 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"16 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+[v _blink_led_nx blink_led_nx `(v  1 e 1 0 ]
+"25
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
-"27
-[v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
-"34
+"33
+[v _waitmssp waitmssp `(v  1 e 1 0 ]
+"38
 [v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
-"46
-[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
-"52
+"60
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
-"72
+"107
 [v _main main `(v  1 e 1 0 ]
 "216 C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "340
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S101 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 PSPIF 1 0 :1:7 
+]
+"549
+[u S110 . 1 `S101 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES110  1 e 1 @12 ]
 "808
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "815
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "1375
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S50 . 1 `uc 1 TRISC0 1 0 :1:0 
+"1437
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+[s S55 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -47,13 +61,13 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1454
-[u S59 . 1 `S50 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES59  1 e 1 @135 ]
+[u S64 . 1 `S55 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES64  1 e 1 @135 ]
 "1499
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1754
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S73 . 1 `uc 1 SEN 1 0 :1:0 
+[s S79 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -63,8 +77,8 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1771
-[u S82 . 1 `S73 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES82  1 e 1 @145 ]
+[u S88 . 1 `S79 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES88  1 e 1 @145 ]
 "1823
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "1830
@@ -87,42 +101,44 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "2975
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"3083
-[v _nRBPU nRBPU `VEb  1 e 0 @1039 ]
-"72 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"107 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _main main `(v  1 e 1 0 ]
 {
-"94
+"119
 } 0
-"52
+"16
+[v _blink_led_nx blink_led_nx `(v  1 e 1 0 ]
+{
+"17
+[v blink_led_nx@i i `i  1 a 2 5 ]
+"16
+[v blink_led_nx@n n `i  1 p 2 0 ]
+"23
+} 0
+"60
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
 {
 [v I2C_Master_Write@d d `uc  1 a 1 wreg ]
 [v I2C_Master_Write@d d `uc  1 a 1 wreg ]
-"54
-[v I2C_Master_Write@d d `uc  1 a 1 1 ]
-"57
+"62
+[v I2C_Master_Write@d d `uc  1 a 1 0 ]
+"64
 } 0
-"46
-[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
-{
-"50
-} 0
-"34
+"38
 [v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
 {
-"38
+"44
 } 0
-"27
-[v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
+"33
+[v _waitmssp waitmssp `(v  1 e 1 0 ]
 {
-"32
+"36
 } 0
-"17
+"25
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
 [v I2C_Master_Init@c c `DCul  1 p 4 0 ]
-"25
+"31
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
