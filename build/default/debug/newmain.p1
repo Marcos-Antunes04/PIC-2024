@@ -41,6 +41,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS20 ~T0 @X0 0 e@12 ]
 "2636
 [v _PEN `Vb ~T0 @X0 0 e@1162 ]
+"2384
+[v _ACKSTAT `Vb ~T0 @X0 0 e@1166 ]
 "2741
 [v _RCEN `Vb ~T0 @X0 0 e@1163 ]
 "2378
@@ -219,242 +221,319 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x WRT  =  OFF  ]
 "14
 [p x CP  =  OFF  ]
-"17
+"18
 [v _blink_led_nx `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _blink_led_nx ]
 [v _n `i ~T0 @X0 1 r1 ]
 [f ]
-"18
+"19
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 99  ]
 [e :U 96 ]
 {
-"19
-[e = _PORTB -> -> 255 `i `uc ]
 "20
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e = _PORTB -> -> 255 `i `uc ]
 "21
-[e = _PORTB -> -> 0 `i `uc ]
-"22
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"22
+[e = _PORTB -> -> 0 `i `uc ]
 "23
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"24
 }
 [e ++ _i -> 1 `i ]
 [e :U 99 ]
 [e $ < _i _n 96  ]
 [e :U 97 ]
 }
-"24
+"25
 [e :UE 95 ]
 }
-"26
+"27
 [v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]
 {
 [e :U _I2C_Master_Init ]
 [v _c `Cul ~T0 @X0 1 r1 ]
 [f ]
-"27
-[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
 "28
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
 "29
-[e = _SSPCON -> -> 40 `i `uc ]
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
 "30
+[e = _SSPCON -> -> 40 `i `uc ]
+"31
 [e = _SSPADD -> - / -> -> 20000000 `l `ul * -> -> -> 4 `i `l `ul _c -> -> -> 1 `i `l `ul `uc ]
-"32
+"33
 [e :UE 100 ]
 }
-"34
+"35
 [v _waitmssp `(v ~T0 @X0 1 ef ]
 {
 [e :U _waitmssp ]
 [f ]
-"35
+"36
 [e $U 102  ]
 [e :U 103 ]
 [e :U 102 ]
 [e $ | ! _SSPIF ! != -> _SSPBUF `i -> 0 `i 103  ]
 [e :U 104 ]
-"36
-[e = _SSPIF -> -> 0 `i `b ]
 "37
+[e = _SSPIF -> -> 0 `i `b ]
+"38
 [e :UE 101 ]
 }
-"39
-[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
 "40
+[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
+"41
 {
 [e :U _I2C_Master_Start ]
 [f ]
-"41
-[e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
 "42
+[e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
+"43
 [e $U 106  ]
 [e :U 107 ]
 [e :U 106 ]
 [e $ _SEN 107  ]
 [e :U 108 ]
-"43
+"44
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"45
+"46
 [e :UE 105 ]
 }
-"47
-[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
 "48
+[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
+"49
 {
 [e :U _I2C_Master_RepeatedStart ]
 [f ]
-"49
-[e = . . _SSPCON2bits 0 1 -> -> 1 `i `uc ]
 "50
-[e ( _waitmssp ..  ]
+[e = . . _SSPCON2bits 0 1 -> -> 1 `i `uc ]
 "51
+[e ( _waitmssp ..  ]
+"52
 [e :UE 109 ]
 }
-"53
-[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
 "54
+[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
+"55
 {
 [e :U _I2C_Master_Stop ]
 [f ]
-"55
-[e = . . _SSPCON2bits 0 2 -> -> 1 `i `uc ]
 "56
+[e = . . _SSPCON2bits 0 2 -> -> 1 `i `uc ]
+"57
 [e $U 111  ]
 [e :U 112 ]
 [e :U 111 ]
 [e $ _PEN 112  ]
 [e :U 113 ]
-"57
-[e $UE 110  ]
 "58
+[e $UE 110  ]
+"59
 [e :UE 110 ]
 }
-"60
+"61
 [v _I2C_Master_Write `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _I2C_Master_Write ]
-[v _d `uc ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"61
-[e = _SSPBUF _d ]
 "62
-[e ( _waitmssp ..  ]
+[e = _SSPBUF _data ]
 "63
+[e ( _waitmssp ..  ]
+"64
 [e :UE 114 ]
 }
-"65
+"66
+[v _I2C_Master_Send_Byte `(v ~T0 @X0 1 ef4`uc`uc`*uc`i ]
+{
+[e :U _I2C_Master_Send_Byte ]
+[v _cmd `uc ~T0 @X0 1 r1 ]
+[v _address `uc ~T0 @X0 1 r2 ]
+[v _data `*uc ~T0 @X0 1 r3 ]
+[v _size `i ~T0 @X0 1 r4 ]
+[f ]
+"68
+[v _temp_data `uc ~T0 @X0 1 a ]
+[e = _temp_data -> | & << -> _address `i -> 1 `i -> 255 `i & -> _cmd `i -> 1 `i `uc ]
+"69
+[e = _SSPBUF _temp_data ]
+"70
+[e ( _waitmssp ..  ]
+"71
+[e $U 116  ]
+[e :U 117 ]
+[e :U 116 ]
+[e $ _ACKSTAT 117  ]
+[e :U 118 ]
+"72
+[e $ ! == -> _cmd `i -> 0 `i 119  ]
+{
+"73
+{
+[v _n `i ~T0 @X0 1 a ]
+[e = _n -> 0 `i ]
+[e $U 123  ]
+[e :U 120 ]
+{
+"74
+[e = _SSPBUF *U + _data * -> _n `x -> -> # *U _data `i `x ]
+"76
+[e ( _waitmssp ..  ]
+"77
+}
+[e ++ _n -> 1 `i ]
+[e :U 123 ]
+[e $ < _n _size 120  ]
+[e :U 121 ]
+}
+"78
+[e ( _I2C_Master_Stop ..  ]
+"79
+}
+[e $U 124  ]
+[e :U 119 ]
+{
+"80
+[e $UE 115  ]
+"81
+}
+[e :U 124 ]
+"82
+[e :UE 115 ]
+}
+"85
 [v _I2C_Master_Read `(us ~T0 @X0 1 ef1`uc ]
 {
 [e :U _I2C_Master_Read ]
 [v _a `uc ~T0 @X0 1 r1 ]
 [f ]
-"66
+"86
 [v _temp `us ~T0 @X0 1 a ]
-"67
+"87
 [e ( _waitmssp ..  ]
-"68
+"88
 [e = _RCEN -> -> 1 `i `b ]
-"69
+"89
 [e ( _waitmssp ..  ]
-"70
+"90
 [e = _temp -> _SSPBUF `us ]
-"71
+"91
 [e ( _waitmssp ..  ]
-"72
+"92
 [e = _ACKDT -> ? != -> _a `i -> 0 `i : -> 0 `i -> 1 `i `b ]
-"73
+"93
 [e = _ACKEN -> -> 1 `i `b ]
-"74
+"94
 [e ) _temp ]
-[e $UE 115  ]
-"75
-[e :UE 115 ]
+[e $UE 125  ]
+"95
+[e :UE 125 ]
 }
-"76
+"96
 [v _ADC_Setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _ADC_Setup ]
 [f ]
-"77
+"97
 [e = _ADCON0 -> -> 129 `i `uc ]
-"78
+"98
 [e = _ADCON1 -> -> 128 `i `uc ]
-"79
-[e :UE 116 ]
+"99
+[e :UE 126 ]
 }
-"80
+"100
 [v _ADC_Read `(ui ~T0 @X0 1 ef1`i ]
 {
 [e :U _ADC_Read ]
 [v _channel `i ~T0 @X0 1 r1 ]
 [f ]
-"81
-[e $ ! > _channel -> 7 `i 118  ]
-"82
+"101
+[e $ ! > _channel -> 7 `i 128  ]
+"102
 [e ) -> -> 0 `i `ui ]
-[e $UE 117  ]
-[e :U 118 ]
-"84
+[e $UE 127  ]
+[e :U 128 ]
+"104
 [e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
-"85
+"105
 [e = . . _ADCON0bits 1 3 -> -> 0 `i `uc ]
-"86
+"106
 [e = . . _ADCON0bits 1 4 -> -> 0 `i `uc ]
-"88
+"108
 [e =| _ADCON0 -> << _channel -> 3 `i `Vuc ]
-"89
+"109
 [e = _GO_DONE -> -> 1 `i `b ]
-"90
-[e $U 119  ]
-[e :U 120 ]
-[e :U 119 ]
-[e $ _GO_DONE 120  ]
-[e :U 121 ]
-"91
+"110
+[e $U 129  ]
+[e :U 130 ]
+[e :U 129 ]
+[e $ _GO_DONE 130  ]
+[e :U 131 ]
+"111
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
-[e $UE 117  ]
-"92
-[e :UE 117 ]
+[e $UE 127  ]
+"112
+[e :UE 127 ]
 }
-"94
+"114
 [v _adc_value `ui ~T0 @X0 1 e ]
 [i _adc_value
 -> -> 0 `i `ui
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"96
+"116
 [v _main `(v ~T0 @X0 1 ef ]
-"97
+"117
 {
 [e :U _main ]
 [f ]
-"99
+"119
 [e = _TRISA -> -> 255 `i `uc ]
-"100
+"120
 [e = _TRISB -> -> 0 `i `uc ]
-"101
+"121
 [e = _TRISD -> -> 0 `i `uc ]
-"102
-[e = _PORTD -> -> 0 `i `uc ]
-"103
-[e = _PORTB -> -> 0 `i `uc ]
-"106
-[e ( _ADC_Setup ..  ]
-"108
-[e :U 124 ]
-{
-"114
-[e = _adc_value ( _ADC_Read (1 -> 0 `i ]
 "122
-}
-[e :U 123 ]
-[e $U 124  ]
-[e :U 125 ]
+[e = _PORTD -> -> 0 `i `uc ]
 "123
-[e :UE 122 ]
+[e = _PORTB -> -> 0 `i `uc ]
+"126
+[e ( _ADC_Setup ..  ]
+"128
+[e :U 134 ]
+{
+[v F904 `uc ~T0 @X0 -> 5 `i s ]
+[i F904
+:U ..
+"129
+-> -> 170 `i `uc
+-> -> 187 `i `uc
+-> -> 204 `i `uc
+-> -> 221 `i `uc
+-> -> 238 `i `uc
+..
+]
+[v _data `uc ~T0 @X0 -> 5 `i a ]
+[e = _data F904 ]
+"130
+[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
+"131
+[e ( _I2C_Master_Start ..  ]
+"133
+[e ( _I2C_Master_Send_Byte (4 , , , -> -> 0 `i `uc -> -> 39 `i `uc &U _data -> 5 `i ]
+"134
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"146
+}
+[e :U 133 ]
+[e $U 134  ]
+[e :U 135 ]
+"147
+[e :UE 132 ]
 }

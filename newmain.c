@@ -13,6 +13,7 @@
 #pragma config WRT = OFF 
 #pragma config CP = OFF 
 #define _XTAL_FREQ 20000000
+#define DISPLAY_ADDR 0X27
 
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
@@ -24,55 +25,74 @@ void blink_led_nx(int n){
 }
 
 void I2C_Master_Init(const unsigned long c){
+  SSPCON = 0b00101000;
+  SSPCON2 = 0x00;
+  SSPSTAT = 0x00;
+  SSPADD = (_XTAL_FREQ/(4*c))-1;
   TRISCbits.TRISC3 = 1;        //Setting as input
   TRISCbits.TRISC4 = 1;        //Setting as input
-  SSPCON = 0b00101000;
-  SSPADD = (_XTAL_FREQ/(4*c))-1;
-
 }
 
-void waitmssp(){
-    while(!SSPIF | !SSPBUF);
-    SSPIF=0;
-}
-
-void I2C_Master_Start()
+void I2C_IDLE()
 {
-  SSPCON2bits.SEN = 1;
-  while(SEN);
-  PIR1bits.SSPIF = 0;
-  // waitmssp();
+  while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
-void I2C_Master_RepeatedStart()
+void I2C_Start()
 {
-  SSPCON2bits.RSEN = 1;
-  waitmssp();
+I2C_IDLE();
+SSPCON2bits.SEN = 1;  // initial start condition on SDA line
 }
 
-void I2C_Master_Stop()
+void I2C_Stop()
 {
-  SSPCON2bits.PEN = 1;
-  while(PEN);
-  return;
+I2C_IDLE();
+SSPCON2bits.PEN = 1; // Initiate Stop condition on SDA and SCL pins
 }
 
-void I2C_Master_Write(unsigned char d){
-  SSPBUF = d;
-  waitmssp();
+void I2C_Restart()
+{
+I2C_IDLE();
+SSPCON2bits.RSEN = 1; // Initiate Repeated Start condition on SDA and SCL pins.
 }
 
-unsigned short I2C_Master_Read(uint8_t a){
-  unsigned short temp;
-  waitmssp();
-  RCEN = 1;
-  waitmssp();
-  temp = SSPBUF;
-  waitmssp();
-  ACKDT = (a)?0:1;
-  ACKEN = 1;
-  return temp;
+void I2C_ACK(void)
+{
+  I2C_IDLE();
+  SSPCON2bits.ACKDT = 0; //Acknowledge Data bit  
+  SSPCON2bits.ACKEN = 1;  // Acknowledge Sequence Enable bit(
 }
+void I2C_NACK(void)
+{
+I2C_IDLE();
+SSPCON2bits.ACKDT = 1; 
+SSPCON2bits.ACKEN = 1; 
+}
+
+unsigned char I2C_Write(unsigned char Data)
+{
+I2C_IDLE();   // wait untill I2C_Bus of PIC18F4550 microcontroller becomes free 
+SSPBUF = Data; // store data inside SSPBUF register of PIC18F4550 microcontroller
+I2C_IDLE();  
+return ACKSTAT; //return status of data or address transmission
+}
+
+unsigned char I2C_Read_Byte(void)
+{
+SSPCON2bits.RCEN = 1; // Enable & Start Reception
+while(!SSPIF); // Wait Until Completion
+SSPIF = 0; // Clear The Interrupt Flag Bit
+return SSPBUF; // Return The Received Byte
+}
+
+void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
+    uint8_t send = (uint8_t) ((address << 1) & (0b11111110));
+    I2C_Write(send);
+    for(int n = 0; n < size; n++){
+        I2C_Write(data[n]);
+    }
+}
+
 void ADC_Setup(void){
   ADCON0 = 0X81;
   ADCON1 = 0b10000000;
@@ -106,19 +126,14 @@ void main()
   ADC_Setup();
   
   while(1){
-      // I2C_Master_Init(100000);
-      // I2C_Master_Start();
-      // I2C_Master_Write(0x33);
-      // __delay_ms(200);
+      uint8_t data[5] = {0xAA, 0XBB, 0XCC, 0XDD, 0XEE};
+      I2C_Master_Init(100000);
+      //I2C_Master_Start();
+      //I2C_Master_Send_Byte(0,DISPLAY_ADDR,data,5);
+      I2C_Start();
+      I2C_Multi_Send(0,0x27,data,sizeof(data));
+      I2C_Stop();
+      __delay_ms(200);
       
-      adc_value = ADC_Read(0);
-      
-      // /*
-      if(adc_value > (uint16_t) 512)
-          PORTB=0xff;
-      else
-          PORTB=0x00;
-      
-      // */
   }
 }

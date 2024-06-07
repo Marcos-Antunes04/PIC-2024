@@ -1857,6 +1857,9 @@ extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 2 3
 # 3 "newmain.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdint.h" 1 3
+# 4 "newmain.c" 2
+
 
 
 #pragma config FOSC = HS
@@ -1869,6 +1872,7 @@ extern __bank0 __bit __timeout;
 #pragma config CP = OFF
 
 
+
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
         PORTB = 0xff;
@@ -1879,11 +1883,12 @@ void blink_led_nx(int n){
 }
 
 void I2C_Master_Init(const unsigned long c){
+  SSPCON = 0b00101000;
+  SSPCON2 = 0x00;
+  SSPSTAT = 0x00;
+  SSPADD = (20000000/(4*c))-1;
   TRISCbits.TRISC3 = 1;
   TRISCbits.TRISC4 = 1;
-  SSPCON = 0b00101000;
-  SSPADD = (20000000/(4*c))-1;
-
 }
 
 void waitmssp(){
@@ -1909,17 +1914,21 @@ void I2C_Master_Stop()
 {
   SSPCON2bits.PEN = 1;
   while(PEN);
-  return;
+  if(PORTB == 0x00)
+      PORTB == 0xff;
+  else
+      PORTB == 0x00;
 }
 
-void I2C_Master_Write(unsigned char d)
-{
-  SSPBUF = d;
+void I2C_Master_Write(uint8_t data){
+  SSPBUF = data;
   waitmssp();
 }
 
-unsigned short I2C_Master_Read(uint8_t a)
-{
+
+
+
+unsigned short I2C_Master_Read(uint8_t a){
   unsigned short temp;
   waitmssp();
   RCEN = 1;
@@ -1931,39 +1940,111 @@ unsigned short I2C_Master_Read(uint8_t a)
   return temp;
 }
 
-void i2c_init(){
-    TRISC = 0xff;
-    SSPCON = 0x28;
+void I2C_IDLE()
+{
+  while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
-void i2c_write(char data){
-    SSPCON2bits.SEN = 1;
-    while(SEN);
-    PIR1bits.SSPIF = 0;
-
-    SSPBUF = 0xAA;
-
-    while(!SSPIF);
-    PIR1bits.SSPIF = 0;
-# 100 "newmain.c"
-    SSPCON2bits.PEN = 1;
-    while(PEN);
-    return;
-
+void I2C_Start()
+{
+I2C_IDLE();
+SSPCON2bits.SEN = 1;
 }
+
+void I2C_Stop()
+{
+I2C_IDLE();
+SSPCON2bits.PEN = 1;
+}
+
+void I2C_Restart()
+{
+I2C_IDLE();
+SSPCON2bits.RSEN = 1;
+}
+
+void I2C_ACK(void)
+{
+  I2C_IDLE();
+  SSPCON2bits.ACKDT = 0;
+  SSPCON2bits.ACKEN = 1;
+}
+void I2C_NACK(void)
+{
+I2C_IDLE();
+SSPCON2bits.ACKDT = 1;
+SSPCON2bits.ACKEN = 1;
+}
+
+unsigned char I2C_Write(unsigned char Data)
+{
+I2C_IDLE();
+SSPBUF = Data;
+I2C_IDLE();
+return ACKSTAT;
+}
+
+unsigned char I2C_Read_Byte(void)
+{
+SSPCON2bits.RCEN = 1;
+while(!SSPIF);
+SSPIF = 0;
+return SSPBUF;
+}
+
+void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
+    uint8_t send = (uint8_t) ((address << 1) & (0b11111110));
+    I2C_Write(send);
+    for(int n = 0; n < size; n++){
+        I2C_Write(data[n]);
+    }
+}
+
+void ADC_Setup(void){
+  ADCON0 = 0X81;
+  ADCON1 = 0b10000000;
+}
+uint16_t ADC_Read(int channel){
+    if(channel > 7)
+        return 0;
+
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+
+    ADCON0 |= channel<<3;
+    GO_DONE = 1;
+    while(GO_DONE);
+    return (uint16_t)((ADRESH << 8) + ADRESL);
+}
+
+uint16_t adc_value = 0;
+
+
+
+
 
 void main()
 {
+
+  TRISA = 0XFF;
   TRISB = 0x00;
   TRISD = 0x00;
   PORTD = 0x00;
   PORTB = 0X00;
 
 
+  ADC_Setup();
+
   while(1){
+      uint8_t data[5] = {0xAA, 0XBB, 0XCC, 0XDD, 0XEE};
       I2C_Master_Init(100000);
-      I2C_Master_Start();
-      I2C_Master_Write(0x33);
+
+
+      I2C_Start();
+      I2C_Multi_Send(0,0x27,data,sizeof(data));
+      I2C_Stop();
       _delay((unsigned long)((200)*(20000000/4000.0)));
+
   }
 }
