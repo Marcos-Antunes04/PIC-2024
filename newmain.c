@@ -110,9 +110,6 @@ uint16_t ADC_Read(int channel){
     while(GO_DONE);
     return (uint16_t)((ADRESH << 8) + ADRESL);
 }
-/* Global variable declarations*/
-uint16_t adc_value = 0;
-
 
 void lcd_send_cmd (char cmd)
 {
@@ -204,6 +201,8 @@ void lcd_send_string (char *str)
 	while (*str) lcd_send_data (*str++);
 }
 
+/* Global variable declarations*/
+uint16_t adc_value = 0;
 
 
 void main()
@@ -219,8 +218,29 @@ void main()
   // A/D converter module is powered up and ADC clock = Fosc/4
   ADC_Setup();
   
+  __delay_ms(2000);
+  
+  lcd_init();
+  lcd_send_string("Hello World");
+  
+  __delay_ms(2000);
+  
+  lcd_put_cur(1,0);
+  
+  lcd_send_string("From Antunes");
+  
+  lcd_clear();
+  int row = 0;
+  int col = 0;
+  
   while(1){
-      uint8_t data[5] = {0xAA, 0XBB, 0XCC, 0XDD, 0XEE};
-      
+      for(int i = 0; i<128;i++){
+          lcd_put_cur(row,col);
+          lcd_send_data(i+48);
+          col++;
+          if(col>15) {row++; col=0;}
+          if(row>1) row=0;
+          __delay_ms(50);
+      }
   }
 }

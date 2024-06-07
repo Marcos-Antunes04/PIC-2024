@@ -1891,55 +1891,6 @@ void I2C_Master_Init(const unsigned long c){
   TRISCbits.TRISC4 = 1;
 }
 
-void waitmssp(){
-    while(!SSPIF | !SSPBUF);
-    SSPIF=0;
-}
-
-void I2C_Master_Start()
-{
-  SSPCON2bits.SEN = 1;
-  while(SEN);
-  PIR1bits.SSPIF = 0;
-
-}
-
-void I2C_Master_RepeatedStart()
-{
-  SSPCON2bits.RSEN = 1;
-  waitmssp();
-}
-
-void I2C_Master_Stop()
-{
-  SSPCON2bits.PEN = 1;
-  while(PEN);
-  if(PORTB == 0x00)
-      PORTB == 0xff;
-  else
-      PORTB == 0x00;
-}
-
-void I2C_Master_Write(uint8_t data){
-  SSPBUF = data;
-  waitmssp();
-}
-
-
-
-
-unsigned short I2C_Master_Read(uint8_t a){
-  unsigned short temp;
-  waitmssp();
-  RCEN = 1;
-  waitmssp();
-  temp = SSPBUF;
-  waitmssp();
-  ACKDT = (a)?0:1;
-  ACKEN = 1;
-  return temp;
-}
-
 void I2C_IDLE()
 {
   while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
@@ -2018,10 +1969,98 @@ uint16_t ADC_Read(int channel){
     return (uint16_t)((ADRESH << 8) + ADRESL);
 }
 
+void lcd_send_cmd (char cmd)
+{
+  char data_u, data_l;
+ uint8_t data_t[4];
+ data_u = (cmd&0xf0);
+ data_l = ((cmd<<4)&0xf0);
+ data_t[0] = data_u|0x0C;
+ data_t[1] = data_u|0x08;
+ data_t[2] = data_l|0x0C;
+ data_t[3] = data_l|0x08;
+    I2C_Start();
+    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
+    I2C_Stop();
+    _delay((unsigned long)((50)*(20000000/4000.0)));
+
+}
+
+void lcd_send_data (char data)
+{
+ char data_u, data_l;
+ uint8_t data_t[4];
+ data_u = (data&0xf0);
+ data_l = ((data<<4)&0xf0);
+ data_t[0] = data_u|0x0D;
+ data_t[1] = data_u|0x09;
+ data_t[2] = data_l|0x0D;
+ data_t[3] = data_l|0x09;
+ I2C_Start();
+    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
+    I2C_Stop();
+    _delay((unsigned long)((50)*(20000000/4000.0)));
+
+}
+
+void lcd_clear (void)
+{
+ lcd_send_cmd (0x80);
+ for (int i=0; i<70; i++)
+ {
+  lcd_send_data (' ');
+ }
+}
+
+void lcd_put_cur(int row, int col)
+{
+    switch (row)
+    {
+        case 0:
+            col |= 0x80;
+            break;
+        case 1:
+            col |= 0xC0;
+            break;
+    }
+
+    lcd_send_cmd (col);
+}
+
+
+void lcd_init (void)
+{
+
+ _delay((unsigned long)((50)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((5)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((10)*(20000000/4000.0)));
+ lcd_send_cmd (0x20);
+ _delay((unsigned long)((10)*(20000000/4000.0)));
+
+
+ lcd_send_cmd (0x28);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x08);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x01);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x06);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x0C);
+}
+
+void lcd_send_string (char *str)
+{
+ while (*str) lcd_send_data (*str++);
+}
+
+
 uint16_t adc_value = 0;
-
-
-
 
 
 void main()
@@ -2033,18 +2072,33 @@ void main()
   PORTD = 0x00;
   PORTB = 0X00;
 
+  I2C_Master_Init(100000);
 
   ADC_Setup();
 
+  _delay((unsigned long)((2000)*(20000000/4000.0)));
+
+  lcd_init();
+  lcd_send_string("Hello World");
+
+  _delay((unsigned long)((2000)*(20000000/4000.0)));
+
+  lcd_put_cur(1,0);
+
+  lcd_send_string("From Antunes");
+
+  lcd_clear();
+  int row = 0;
+  int col = 0;
+
   while(1){
-      uint8_t data[5] = {0xAA, 0XBB, 0XCC, 0XDD, 0XEE};
-      I2C_Master_Init(100000);
-
-
-      I2C_Start();
-      I2C_Multi_Send(0,0x27,data,sizeof(data));
-      I2C_Stop();
-      _delay((unsigned long)((200)*(20000000/4000.0)));
-
+      for(int i = 0; i<128;i++){
+          lcd_put_cur(row,col);
+          lcd_send_data(i+48);
+          col++;
+          if(col>15) {row++; col=0;}
+          if(row>1) row=0;
+          _delay((unsigned long)((50)*(20000000/4000.0)));
+      }
   }
 }
