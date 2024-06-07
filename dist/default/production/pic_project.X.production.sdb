@@ -5,6 +5,12 @@
 [d frameptr 0 ]
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"505 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul8_16.c
@@ -13,33 +19,35 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"27 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"28 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
-"36
+"37
 [v _I2C_IDLE I2C_IDLE `(v  1 e 1 0 ]
-"41
+"42
 [v _I2C_Start I2C_Start `(v  1 e 1 0 ]
-"47
+"48
 [v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
-"72
+"73
 [v _I2C_Write I2C_Write `(uc  1 e 1 0 ]
-"88
+"89
 [v _I2C_Multi_Send I2C_Multi_Send `(v  1 e 1 0 ]
-"96
+"97
 [v _ADC_Setup ADC_Setup `(v  1 e 1 0 ]
-"114
+"101
+[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
+"115
 [v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
-"131
+"133
 [v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
-"148
+"151
 [v _lcd_clear lcd_clear `(v  1 e 1 0 ]
-"157
+"160
 [v _lcd_put_cur lcd_put_cur `(v  1 e 1 0 ]
-"173
+"176
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
-"199
+"202
 [v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
-"208
+"212
 [v _main main `(v  1 e 1 0 ]
 "216 C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -122,116 +130,161 @@
 [v _GO_DONE GO_DONE `VEb  1 e 0 @250 ]
 "2828
 [v _SSPIF SSPIF `VEb  1 e 0 @99 ]
+"358 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
 "208 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+[v _adc_value_1 adc_value_1 `ui  1 e 2 0 ]
+"209
+[v _adc_value_2 adc_value_2 `ui  1 e 2 0 ]
+"212
 [v _main main `(v  1 e 1 0 ]
 {
-"237
-[v main@i i `i  1 a 2 18 ]
-"234
-[v main@col col `i  1 a 2 16 ]
-"233
-[v main@row row `i  1 a 2 14 ]
-"246
+"214
+[v main@str1 str1 `[4]uc  1 a 4 20 ]
+"215
+[v main@str2 str2 `[4]uc  1 a 4 16 ]
+"251
 } 0
-"199
+"505 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+"545
+[v sprintf@val val `ui  1 a 2 9 ]
+"512
+[v sprintf@c c `uc  1 a 1 12 ]
+"521
+[v sprintf@prec prec `c  1 a 1 8 ]
+"525
+[v sprintf@flag flag `uc  1 a 1 7 ]
+"507
+[v sprintf@ap ap `[1]*.4v  1 a 1 6 ]
+"505
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+[v sprintf@f f `*.24DCuc  1 p 1 0 ]
+"550
+[v sprintf@sp sp `*.4uc  1 a 1 11 ]
+"1567
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 11 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 7 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 9 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"30
+} 0
+"202 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
 {
-[v lcd_send_string@str str `*.24uc  1 a 1 wreg ]
-[v lcd_send_string@str str `*.24uc  1 a 1 wreg ]
-[v lcd_send_string@str str `*.24uc  1 a 1 12 ]
-"202
+[v lcd_send_string@str str `*.26uc  1 p 2 11 ]
+"205
 } 0
-"157
+"160
 [v _lcd_put_cur lcd_put_cur `(v  1 e 1 0 ]
 {
 [v lcd_put_cur@row row `i  1 p 2 7 ]
 [v lcd_put_cur@col col `i  1 p 2 9 ]
-"170
-} 0
 "173
+} 0
+"176
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
 {
-"197
+"200
 } 0
-"148
+"151
 [v _lcd_clear lcd_clear `(v  1 e 1 0 ]
 {
-"151
-[v lcd_clear@i i `i  1 a 2 12 ]
-"155
+"154
+[v lcd_clear@i i `i  1 a 2 11 ]
+"158
 } 0
-"131
+"133
 [v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
 {
 [v lcd_send_data@data data `uc  1 a 1 wreg ]
-"134
+"136
 [v lcd_send_data@data_t data_t `[4]uc  1 a 4 0 ]
-"133
+"135
 [v lcd_send_data@data_l data_l `uc  1 a 1 6 ]
 [v lcd_send_data@data_u data_u `uc  1 a 1 5 ]
-"131
+"133
 [v lcd_send_data@data data `uc  1 a 1 wreg ]
-"135
+"137
 [v lcd_send_data@data data `uc  1 a 1 4 ]
-"146
+"149
 } 0
-"114
+"115
 [v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
 {
 [v lcd_send_cmd@cmd cmd `uc  1 a 1 wreg ]
-"117
+"118
 [v lcd_send_cmd@data_t data_t `[4]uc  1 a 4 0 ]
-"116
+"117
 [v lcd_send_cmd@data_l data_l `uc  1 a 1 6 ]
 [v lcd_send_cmd@data_u data_u `uc  1 a 1 5 ]
-"114
+"115
 [v lcd_send_cmd@cmd cmd `uc  1 a 1 wreg ]
-"118
+"119
 [v lcd_send_cmd@cmd cmd `uc  1 a 1 4 ]
-"129
+"131
 } 0
-"47
+"48
 [v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
 {
-"51
+"52
 } 0
-"41
+"42
 [v _I2C_Start I2C_Start `(v  1 e 1 0 ]
 {
-"45
+"46
 } 0
-"88
+"89
 [v _I2C_Multi_Send I2C_Multi_Send `(v  1 e 1 0 ]
 {
-"91
+"92
 [v I2C_Multi_Send@n n `i  1 a 2 7 ]
-"89
+"90
 [v I2C_Multi_Send@send send `uc  1 a 1 6 ]
-"88
+"89
 [v I2C_Multi_Send@address address `uc  1 p 1 1 ]
 [v I2C_Multi_Send@data data `*.4uc  1 p 1 2 ]
 [v I2C_Multi_Send@size size `i  1 p 2 3 ]
-"94
+"95
 } 0
-"72
+"73
 [v _I2C_Write I2C_Write `(uc  1 e 1 0 ]
 {
 [v I2C_Write@Data Data `uc  1 a 1 wreg ]
 [v I2C_Write@Data Data `uc  1 a 1 wreg ]
-"74
+"75
 [v I2C_Write@Data Data `uc  1 a 1 0 ]
-"78
+"79
 } 0
-"36
+"37
 [v _I2C_IDLE I2C_IDLE `(v  1 e 1 0 ]
 {
-"39
+"40
 } 0
-"27
+"28
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
 [v I2C_Master_Init@c c `DCul  1 p 4 0 ]
-"34
+"35
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -245,8 +298,14 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "30
 } 0
-"96 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"97 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _ADC_Setup ADC_Setup `(v  1 e 1 0 ]
 {
-"99
+"100
+} 0
+"101
+[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
+{
+[v ADC_Read@channel channel `i  1 p 2 0 ]
+"113
 } 0

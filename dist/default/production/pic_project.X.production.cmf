@@ -11,30 +11,34 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production\pic_project.X.production.o
-cinit CODE 0 7F8 7F8 8 2 1
-text1 CODE 0 4E3 4E3 1F 2 1
-text2 CODE 0 4C5 4C5 1E 2 1
-text3 CODE 0 679 679 A8 2 1
-text4 CODE 0 502 502 22 2 1
-text5 CODE 0 5CF 5CF 44 2 1
-text6 CODE 0 58B 58B 44 2 1
-text7 CODE 0 49F 49F 9 2 1
-text8 CODE 0 496 496 9 2 1
-text9 CODE 0 524 524 2F 2 1
-text10 CODE 0 4B5 4B5 10 2 1
-text11 CODE 0 4A8 4A8 D 2 1
-text12 CODE 0 553 553 38 2 1
-text13 CODE 0 613 613 66 2 1
-text14 CODE 0 48D 48D 9 2 1
-maintext CODE 0 721 721 D7 2 1
-cstackCOMMON COMMON 1 70 70 E 1 1
-cstackBANK0 BANK0 1 20 20 14 1 1
-bssBANK0 BANK0 1 34 34 2 1 1
-strings STRING 0 3 3 1F 2 1
-config CONFIG 4 2007 2007 1 2 1
-$C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
+$C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
 end_init CODE 0 0 0 3 2 1
+config CONFIG 4 2007 2007 1 2 1
+$dist/default/production\pic_project.X.production.o
+cinit CODE 0 7F6 7F6 A 2 1
+text1 CODE 0 71C 71C DA 2 1
+text2 CODE 0 456 456 3A 2 1
+text3 CODE 0 50E 50E 44 2 1
+text4 CODE 0 39B 39B 26 2 1
+text5 CODE 0 35B 35B 1E 2 1
+text6 CODE 0 5B8 5B8 8F 2 1
+text7 CODE 0 379 379 22 2 1
+text8 CODE 0 4CF 4CF 3F 2 1
+text9 CODE 0 490 490 3F 2 1
+text10 CODE 0 335 335 9 2 1
+text11 CODE 0 32C 32C 9 2 1
+text12 CODE 0 3EF 3EF 2F 2 1
+text13 CODE 0 34B 34B 10 2 1
+text14 CODE 0 33E 33E D 2 1
+text15 CODE 0 41E 41E 38 2 1
+text16 CODE 0 552 552 66 2 1
+text17 CODE 0 323 323 9 2 1
+text18 CODE 0 3C1 3C1 2E 2 1
+maintext CODE 0 647 647 D5 2 1
+cstackCOMMON COMMON 1 70 70 E 1 1
+cstackBANK0 BANK0 1 20 20 18 1 1
+bssBANK0 BANK0 1 38 38 4 1 1
+strings STRING 0 3 3 36 2 1
 config CONFIG 4 2007 2007 1 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -42,29 +46,29 @@ config CONFIG 4 2007 2007 1 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 36-6F 1
+RAM 3C-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 36-6F 1
+BANK0 3C-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 22-48C 2
+CONST 39-322 2
 CONST 800-1FFF 2
-ENTRY 22-48C 2
+ENTRY 39-322 2
 ENTRY 800-1FFF 2
 IDLOC 2000-2003 2
-CODE 22-48C 2
+CODE 39-322 2
 CODE 800-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
 EEDATA 2100-21FF 2
-STRCODE 22-48C 2
+STRCODE 39-322 2
 STRCODE 800-1FFF 2
-STRING 22-48C 2
+STRING 39-322 2
 STRING 800-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -80,195 +84,281 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\pic_project.X.production.o
-7F8 cinit CODE >461:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7F8 cinit CODE >464:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7F8 cinit CODE >475:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7F9 cinit CODE >476:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7FA cinit CODE >477:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7FB cinit CODE >478:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7FC cinit CODE >484:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7FC cinit CODE >486:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-7FD cinit CODE >487:C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_1.s
-48D text14 CODE >96:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-48D text14 CODE >97:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-491 text14 CODE >98:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-495 text14 CODE >99:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-613 text13 CODE >5:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-613 text13 CODE >13:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-61B text13 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-61F text13 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-623 text13 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-625 text13 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-626 text13 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-628 text13 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-62F text13 CODE >18:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-633 text13 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-637 text13 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-639 text13 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-640 text13 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-642 text13 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-646 text13 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-64A text13 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-64E text13 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-652 text13 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-655 text13 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-659 text13 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-65D text13 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-660 text13 CODE >24:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-661 text13 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-662 text13 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-668 text13 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-66A text13 CODE >27:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-670 text13 CODE >29:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-678 text13 CODE >30:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
-553 text12 CODE >27:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-553 text12 CODE >28:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-557 text12 CODE >29:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-55A text12 CODE >30:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-55B text12 CODE >31:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-566 text12 CODE >31:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-56C text12 CODE >31:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-588 text12 CODE >32:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-589 text12 CODE >33:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-58A text12 CODE >34:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4A8 text11 CODE >36:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4A8 text11 CODE >38:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4B4 text11 CODE >39:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4B5 text10 CODE >72:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4B6 text10 CODE >74:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4BB text10 CODE >75:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4BF text10 CODE >76:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C4 text10 CODE >77:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C4 text10 CODE >78:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-524 text9 CODE >88:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-524 text9 CODE >89:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-529 text9 CODE >90:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-52F text9 CODE >91:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-532 text9 CODE >92:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-53E text9 CODE >93:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-540 text9 CODE >93:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-54A text9 CODE >93:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-54E text9 CODE >93:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-552 text9 CODE >94:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-496 text8 CODE >41:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-496 text8 CODE >43:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-49B text8 CODE >44:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-49E text8 CODE >45:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-49F text7 CODE >47:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-49F text7 CODE >49:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4A4 text7 CODE >50:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4A7 text7 CODE >51:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-58B text6 CODE >114:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-58E text6 CODE >118:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-591 text6 CODE >119:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-594 text6 CODE >119:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-597 text6 CODE >119:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-599 text6 CODE >119:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-59D text6 CODE >120:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5A0 text6 CODE >121:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5A3 text6 CODE >122:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5A6 text6 CODE >123:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5A9 text6 CODE >124:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5AE text6 CODE >125:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5BC text6 CODE >126:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5C1 text6 CODE >127:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5CE text6 CODE >129:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5CF text5 CODE >131:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5D2 text5 CODE >135:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5D5 text5 CODE >136:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5D8 text5 CODE >136:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5DB text5 CODE >136:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5DD text5 CODE >136:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5E1 text5 CODE >137:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5E4 text5 CODE >138:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5E7 text5 CODE >139:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5EA text5 CODE >140:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5ED text5 CODE >141:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-5F2 text5 CODE >142:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-600 text5 CODE >143:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-605 text5 CODE >144:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-612 text5 CODE >146:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-502 text4 CODE >148:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-502 text4 CODE >150:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-508 text4 CODE >151:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-50A text4 CODE >153:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-510 text4 CODE >154:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-512 text4 CODE >154:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-51B text4 CODE >154:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-51F text4 CODE >154:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-523 text4 CODE >155:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-679 text3 CODE >173:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-679 text3 CODE >176:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-687 text3 CODE >177:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-68D text3 CODE >178:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-698 text3 CODE >179:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-69E text3 CODE >180:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6A9 text3 CODE >181:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6AF text3 CODE >182:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6BA text3 CODE >183:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6C0 text3 CODE >184:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6CB text3 CODE >187:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6D1 text3 CODE >188:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6DC text3 CODE >189:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6E2 text3 CODE >190:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6ED text3 CODE >191:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6F3 text3 CODE >192:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-6FE text3 CODE >193:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-709 text3 CODE >194:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-70F text3 CODE >195:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-71A text3 CODE >196:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-720 text3 CODE >197:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C5 text2 CODE >157:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C5 text2 CODE >159:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C6 text2 CODE >161:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C6 text2 CODE >162:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C7 text2 CODE >163:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4C8 text2 CODE >165:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4CC text2 CODE >166:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4CD text2 CODE >167:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4D1 text2 CODE >167:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4D6 text2 CODE >167:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4D9 text2 CODE >167:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4DC text2 CODE >169:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4E2 text2 CODE >170:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4E3 text1 CODE >199:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4E4 text1 CODE >201:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-4FD text1 CODE >201:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-501 text1 CODE >202:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-721 maintext CODE >208:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-721 maintext CODE >211:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-725 maintext CODE >212:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-726 maintext CODE >213:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-727 maintext CODE >214:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-72A maintext CODE >215:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-72B maintext CODE >217:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-738 maintext CODE >219:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-73D maintext CODE >221:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-74B maintext CODE >223:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-750 maintext CODE >224:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-756 maintext CODE >226:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-764 maintext CODE >228:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-772 maintext CODE >230:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-778 maintext CODE >232:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-77D maintext CODE >233:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-781 maintext CODE >234:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-783 maintext CODE >237:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-787 maintext CODE >238:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-796 maintext CODE >239:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-79F maintext CODE >240:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7A3 maintext CODE >240:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7A7 maintext CODE >241:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7AC maintext CODE >241:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7B0 maintext CODE >241:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7B8 maintext CODE >241:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7BE maintext CODE >242:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7C5 maintext CODE >242:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7C9 maintext CODE >242:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7D1 maintext CODE >243:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7DF maintext CODE >244:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7E3 maintext CODE >244:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7EC maintext CODE >244:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-7F0 maintext CODE >244:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+7F6 cinit CODE >505:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7F6 cinit CODE >508:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7F6 cinit CODE >522:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7F7 cinit CODE >523:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7F8 cinit CODE >524:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7F9 cinit CODE >525:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7FA cinit CODE >526:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7FB cinit CODE >527:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7FC cinit CODE >533:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7FC cinit CODE >535:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+7FD cinit CODE >536:C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_1.s
+3C1 text18 CODE >101:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3C1 text18 CODE >102:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3C6 text18 CODE >102:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3CA text18 CODE >102:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3CE text18 CODE >103:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3D1 text18 CODE >105:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3D4 text18 CODE >106:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3D5 text18 CODE >107:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3D6 text18 CODE >109:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3D9 text18 CODE >109:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3DC text18 CODE >109:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3DE text18 CODE >109:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3E3 text18 CODE >110:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3E4 text18 CODE >111:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3E8 text18 CODE >112:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3EE text18 CODE >113:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+323 text17 CODE >97:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+323 text17 CODE >98:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+327 text17 CODE >99:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+32B text17 CODE >100:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+552 text16 CODE >5:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+552 text16 CODE >13:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+55A text16 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+55E text16 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+562 text16 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+564 text16 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+565 text16 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+567 text16 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+56E text16 CODE >18:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+572 text16 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+576 text16 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+578 text16 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+57F text16 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+581 text16 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+585 text16 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+589 text16 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+58D text16 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+591 text16 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+594 text16 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+598 text16 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+59C text16 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+59F text16 CODE >24:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5A0 text16 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5A1 text16 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5A7 text16 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5A9 text16 CODE >27:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5AF text16 CODE >29:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+5B7 text16 CODE >30:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
+41E text15 CODE >28:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+41E text15 CODE >29:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+422 text15 CODE >30:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+425 text15 CODE >31:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+426 text15 CODE >32:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+431 text15 CODE >32:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+437 text15 CODE >32:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+453 text15 CODE >33:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+454 text15 CODE >34:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+455 text15 CODE >35:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+33E text14 CODE >37:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+33E text14 CODE >39:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+34A text14 CODE >40:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+34B text13 CODE >73:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+34C text13 CODE >75:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+351 text13 CODE >76:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+355 text13 CODE >77:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35A text13 CODE >78:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35A text13 CODE >79:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3EF text12 CODE >89:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3EF text12 CODE >90:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3F4 text12 CODE >91:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3FA text12 CODE >92:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3FD text12 CODE >93:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+409 text12 CODE >94:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+40B text12 CODE >94:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+415 text12 CODE >94:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+419 text12 CODE >94:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+41D text12 CODE >95:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+32C text11 CODE >42:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+32C text11 CODE >44:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+331 text11 CODE >45:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+334 text11 CODE >46:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+335 text10 CODE >48:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+335 text10 CODE >50:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+33A text10 CODE >51:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+33D text10 CODE >52:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+490 text9 CODE >115:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+493 text9 CODE >119:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+496 text9 CODE >120:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+499 text9 CODE >120:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+49C text9 CODE >120:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+49E text9 CODE >120:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4A2 text9 CODE >121:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4A5 text9 CODE >122:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4A8 text9 CODE >123:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4AB text9 CODE >124:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4AE text9 CODE >125:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4B3 text9 CODE >126:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4C1 text9 CODE >127:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4C6 text9 CODE >129:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4CE text9 CODE >131:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4CF text8 CODE >133:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4D2 text8 CODE >137:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4D5 text8 CODE >138:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4D8 text8 CODE >138:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4DB text8 CODE >138:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4DD text8 CODE >138:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4E1 text8 CODE >139:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4E4 text8 CODE >140:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4E7 text8 CODE >141:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4EA text8 CODE >142:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4ED text8 CODE >143:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+4F2 text8 CODE >144:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+500 text8 CODE >145:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+505 text8 CODE >147:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+50D text8 CODE >149:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+379 text7 CODE >151:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+379 text7 CODE >153:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+37F text7 CODE >154:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+381 text7 CODE >156:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+387 text7 CODE >157:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+389 text7 CODE >157:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+392 text7 CODE >157:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+396 text7 CODE >157:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+39A text7 CODE >158:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5B8 text6 CODE >176:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5B8 text6 CODE >179:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5C5 text6 CODE >180:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5CB text6 CODE >181:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5D4 text6 CODE >182:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5DA text6 CODE >183:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5E2 text6 CODE >184:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5E8 text6 CODE >185:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5F1 text6 CODE >186:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+5F7 text6 CODE >187:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+600 text6 CODE >190:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+606 text6 CODE >191:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+60E text6 CODE >192:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+614 text6 CODE >193:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+61C text6 CODE >194:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+622 text6 CODE >195:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+62A text6 CODE >196:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+632 text6 CODE >197:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+638 text6 CODE >198:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+640 text6 CODE >199:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+646 text6 CODE >200:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35B text5 CODE >160:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35B text5 CODE >162:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35C text5 CODE >164:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35C text5 CODE >165:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35D text5 CODE >166:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+35E text5 CODE >168:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+362 text5 CODE >169:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+363 text5 CODE >170:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+367 text5 CODE >170:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+36C text5 CODE >170:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+36F text5 CODE >170:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+372 text5 CODE >172:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+378 text5 CODE >173:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+39B text4 CODE >202:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+39B text4 CODE >204:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3AC text4 CODE >204:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3BC text4 CODE >204:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+3C0 text4 CODE >205:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+50E text3 CODE >5:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+50E text3 CODE >13:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+510 text3 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+516 text3 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+518 text3 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+519 text3 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+51A text3 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+51E text3 CODE >17:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+520 text3 CODE >18:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+524 text3 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+528 text3 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+529 text3 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+52D text3 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+52F text3 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+531 text3 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+535 text3 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+539 text3 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+53C text3 CODE >23:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+53F text3 CODE >24:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+540 text3 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+541 text3 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+545 text3 CODE >26:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+547 text3 CODE >27:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+54D text3 CODE >29:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+551 text3 CODE >30:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
+456 text2 CODE >5:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+456 text2 CODE >12:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+45C text2 CODE >13:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+45E text2 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+45F text2 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+460 text2 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+464 text2 CODE >15:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+466 text2 CODE >16:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+46A text2 CODE >14:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+46E text2 CODE >19:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+470 text2 CODE >19:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+474 text2 CODE >19:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+478 text2 CODE >20:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+47B text2 CODE >20:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+47E text2 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+47F text2 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+483 text2 CODE >21:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+485 text2 CODE >22:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+48B text2 CODE >24:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+48F text2 CODE >25:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
+71C text1 CODE >505:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+71F text1 CODE >550:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+721 text1 CODE >553:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+722 text1 CODE >555:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+728 text1 CODE >558:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+731 text1 CODE >559:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+732 text1 CODE >565:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+733 text1 CODE >848:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+742 text1 CODE >848:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+747 text1 CODE >848:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+74A text1 CODE >848:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+74D text1 CODE >848:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+750 text1 CODE >1285:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+75C text1 CODE >1287:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+760 text1 CODE >1288:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+764 text1 CODE >1289:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+767 text1 CODE >1289:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+769 text1 CODE >1331:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+76B text1 CODE >1332:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+77E text1 CODE >1332:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+782 text1 CODE >1332:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+787 text1 CODE >1333:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+791 text1 CODE >1464:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+797 text1 CODE >1465:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7A0 text1 CODE >1498:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7A2 text1 CODE >1500:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7A3 text1 CODE >1515:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7CF text1 CODE >1550:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7D8 text1 CODE >1500:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7E1 text1 CODE >553:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7F1 text1 CODE >1564:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+7F5 text1 CODE >1567:C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
+647 maintext CODE >212:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+647 maintext CODE >217:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+64B maintext CODE >218:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+64C maintext CODE >219:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+64D maintext CODE >220:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+650 maintext CODE >221:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+651 maintext CODE >223:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+65E maintext CODE >225:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+663 maintext CODE >226:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+668 maintext CODE >227:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+671 maintext CODE >229:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+67F maintext CODE >231:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+68D maintext CODE >233:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+696 maintext CODE >235:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+69B maintext CODE >239:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6A9 maintext CODE >240:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6B4 maintext CODE >241:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6C3 maintext CODE >242:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6CF maintext CODE >243:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6DD maintext CODE >244:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6EA maintext CODE >245:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+6F3 maintext CODE >246:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+701 maintext CODE >247:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+70A maintext CODE >248:C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -282,64 +372,71 @@ $dist/default/production\pic_project.X.production.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\pic_project.X.production.o
+___lwmod@counter 7B 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Hspace_0 800 0 ABS 0 - -
 __Hspace_1 7E 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 400F 0 ABS 0 - -
-__end_of_ADC_Setup 92C 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
+__end_of_ADC_Setup 658 0 CODE 0 text17 dist/default/production\pic_project.X.production.o
 I2C_Master_Init@c 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __L__absolute__ 0 0 ABS 0 __absolute__ -
-__end_of_I2C_Start 93E 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
-__end_of_I2C_Write 98A 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
-main@i 32 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+__end_of_I2C_Start 66A 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
+__end_of_I2C_Write 6B6 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-_main E42 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+_main C8E 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\pic_project.X.production.o
-start 0 0 CODE 0 init C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-_ADC_Setup 91A 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
+start 0 0 CODE 0 init C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+_ADC_Setup 646 0 CODE 0 text17 dist/default/production\pic_project.X.production.o
 lcd_put_cur@col 29 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 lcd_put_cur@row 27 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
-_I2C_Start 92C 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
+_I2C_Start 658 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-_I2C_Write 96A 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
-__end_of_lcd_clear A48 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
+_I2C_Write 696 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
+__end_of_lcd_clear 736 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
 I2C_Multi_Send@data 72 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 I2C_Multi_Send@send 76 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 I2C_Multi_Send@size 73 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\pic_project.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
-_lcd_clear A04 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
+_lcd_clear 6F2 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
 _ADCON0 1F 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _ADCON1 9F 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _ADRESH 1E 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _ADRESL 9E 0 ABS 0 - dist/default/production\pic_project.X.production.o
-_I2C_IDLE 950 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
-_I2C_Stop 93E 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
-main@col 30 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
-main@row 2E 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+_I2C_IDLE 67C 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
+_I2C_Stop 66A 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-__end_of_I2C_IDLE 96A 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
-__end_of_I2C_Stop 950 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
+__end_of_I2C_IDLE 696 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
+__end_of_I2C_Stop 67C 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
+_ADC_Read 782 0 CODE 0 text18 dist/default/production\pic_project.X.production.o
+___lwmod@divisor 77 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 _GO_DONE FA 0 ABS 0 - dist/default/production\pic_project.X.production.o
-__end_of___lldiv CF2 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-___stacklo 0 0 ABS 0 - C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
-_lcd_put_cur 98A 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
+__end_of___lldiv B70 0 CODE 0 text16 dist/default/production\pic_project.X.production.o
+__end_of___lwdiv AA4 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
+__end_of___lwmod 920 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
+__end_of_ADC_Read 7DE 0 CODE 0 text18 dist/default/production\pic_project.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+___stacklo 0 0 ABS 0 - C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
+_dpowers 26 0 STRING 0 strings dist/default/production\pic_project.X.production.o
+_lcd_put_cur 6B6 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
+___lwdiv@quotient 74 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 lcd_send_data@data_l 26 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 lcd_send_data@data_t 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 lcd_send_data@data_u 25 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+___lwmod@dividend 79 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 ___lldiv@counter 7D 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
-start_initialization FF0 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
+ADC_Read@channel 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+start_initialization FEC 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
 lcd_send_data@data 24 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _ACKSTAT 48E 0 ABS 0 - dist/default/production\pic_project.X.production.o
@@ -348,24 +445,26 @@ __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.pr
 _SSPADD 93 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _SSPBUF 13 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\pic_project.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
+___int_sp 0 0 STACK 2 stack C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
 __Hcinit 1000 0 CODE 0 cinit -
 __Hstack 0 0 STACK 2 stack -
-__stringbase 10 0 STRING 0 strings dist/default/production\pic_project.X.production.o
+__stringbase 24 0 STRING 0 strings dist/default/production\pic_project.X.production.o
+___lwdiv@counter 76 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 I2C_Multi_Send@address 71 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Hmaintext 0 0 ABS 0 maintext -
+__end_of_sprintf FEC 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4010 0 CONFIG 4 config -
-_lcd_send_cmd B16 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
+_lcd_send_cmd 920 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF0 0 CODE 0 cinit -
+__Lcinit FEC 0 CODE 0 cinit -
 __Lstack 0 0 STACK 2 stack -
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -389,31 +488,44 @@ __S0 800 0 ABS 0 - -
 __S1 7E 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 I2C_Multi_Send@n 77 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
-_lcd_init CF2 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
+?_ADC_Read 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+sprintf@val 29 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+_lcd_init B70 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
 __Lintentry 0 0 CODE 0 intentry -
 ___lldiv@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __stringtab 6 0 STRING 0 strings dist/default/production\pic_project.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\xboxw\AppData\Local\Temp\xcAsajs.\driver_tmp_12.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\xboxw\AppData\Local\Temp\xcAsd2g.\driver_tmp_17.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
-__end_of_lcd_init E42 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
-_lcd_send_data B9E 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
-__end_of_lcd_send_cmd B9E 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
-__ptext10 96A 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
-__ptext11 950 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
-__ptext12 AA6 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
-__ptext13 C26 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
-__ptext14 91A 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
-__end_of_lcd_send_string A04 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
-___lldiv C26 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
-__pmaintext E42 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
-lcd_send_string@str 7C 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+__end_of_lcd_init C8E 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
+_lcd_send_data 99E 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
+__end_of_lcd_send_cmd 99E 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
+sprintf@flag 27 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+sprintf@prec 28 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+__ptext10 66A 0 CODE 0 text10 dist/default/production\pic_project.X.production.o
+__ptext11 658 0 CODE 0 text11 dist/default/production\pic_project.X.production.o
+__ptext12 7DE 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
+__ptext13 696 0 CODE 0 text13 dist/default/production\pic_project.X.production.o
+__ptext14 67C 0 CODE 0 text14 dist/default/production\pic_project.X.production.o
+__ptext15 83C 0 CODE 0 text15 dist/default/production\pic_project.X.production.o
+__ptext16 AA4 0 CODE 0 text16 dist/default/production\pic_project.X.production.o
+__ptext17 646 0 CODE 0 text17 dist/default/production\pic_project.X.production.o
+__ptext18 782 0 CODE 0 text18 dist/default/production\pic_project.X.production.o
+__end_of_lcd_send_string 782 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
+___lldiv AA4 0 CODE 0 text16 dist/default/production\pic_project.X.production.o
+___lwdiv A1C 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
+___lwmod 8AC 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
+__pmaintext C8E 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
+lcd_send_string@str 7B 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-__end_of_lcd_put_cur 9C6 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
-__end_of_I2C_Master_Init B16 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
+main@str1 34 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+main@str2 30 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+___lwdiv@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+__end_of_lcd_put_cur 6F2 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
+__end_of_I2C_Master_Init 8AC 0 CODE 0 text15 dist/default/production\pic_project.X.production.o
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\pic_project.X.production.o
-__end_of__stringtab 12 0 STRING 0 strings dist/default/production\pic_project.X.production.o
-lcd_clear@i 7C 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+__end_of__stringtab 26 0 STRING 0 strings dist/default/production\pic_project.X.production.o
+lcd_clear@i 7B 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
@@ -423,26 +535,34 @@ __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 I2C_Write@Data 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Lend_init 0 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_lcd_send_string 9C6 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
+_lcd_send_string 736 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
 end_of_initialization FF8 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
 __Hintentry 0 0 CODE 0 intentry -
+_adc_value_1 3A 0 BANK0 1 bssBANK0 dist/default/production\pic_project.X.production.o
+_adc_value_2 38 0 BANK0 1 bssBANK0 dist/default/production\pic_project.X.production.o
 __Lstrings 0 0 ABS 0 strings -
+___lwdiv@dividend 72 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 ?___lldiv 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+?___lwdiv 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
+?___lwmod 77 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __Hreset_vec 0 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
 _SSPCON2bits 91 0 ABS 0 - dist/default/production\pic_project.X.production.o
-__ptext1 9C6 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
-__ptext2 98A 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
-__ptext3 CF2 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
-__ptext4 A04 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
-__ptext5 B9E 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
-__ptext6 B16 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
-__ptext7 93E 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
-__ptext8 92C 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
-__ptext9 A48 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
+__ptext1 E38 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
+__ptext2 8AC 0 CODE 0 text2 dist/default/production\pic_project.X.production.o
+__ptext3 A1C 0 CODE 0 text3 dist/default/production\pic_project.X.production.o
+__ptext4 736 0 CODE 0 text4 dist/default/production\pic_project.X.production.o
+__ptext5 6B6 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
+__ptext6 B70 0 CODE 0 text6 dist/default/production\pic_project.X.production.o
+__ptext7 6F2 0 CODE 0 text7 dist/default/production\pic_project.X.production.o
+__ptext8 99E 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
+__ptext9 920 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
+_sprintf E38 0 CODE 0 text1 dist/default/production\pic_project.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_I2C_Master_Init AA6 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
+_I2C_Master_Init 83C 0 CODE 0 text15 dist/default/production\pic_project.X.production.o
+sprintf@ap 26 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+sprintf@sp 2B 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 __H__absolute__ 0 0 ABS 0 __absolute__ -
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __end_of__initialization FF8 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
@@ -451,14 +571,18 @@ lcd_send_cmd@data_l 26 0 BANK0 1 cstackBANK0 dist/default/production\pic_project
 lcd_send_cmd@data_t 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 lcd_send_cmd@data_u 25 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext -
-__end_of_lcd_send_data C26 0 CODE 0 text5 dist/default/production\pic_project.X.production.o
-_I2C_Multi_Send A48 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
+__end_of_lcd_send_data A1C 0 CODE 0 text8 dist/default/production\pic_project.X.production.o
+_I2C_Multi_Send 7DE 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
 ___lldiv@quotient 79 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\pic_project.X.production.o
 _SSPCON2 91 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _SSPSTAT 94 0 ABS 0 - dist/default/production\pic_project.X.production.o
 __Hend_init 6 0 CODE 0 end_init -
-__end_of_main FF0 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
+sprintf@c 2C 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+sprintf@f 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
+__end_of_main E38 0 CODE 0 maintext dist/default/production\pic_project.X.production.o
+__end_of_dpowers 3A 0 STRING 0 strings dist/default/production\pic_project.X.production.o
+?_sprintf 20 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\pic_project.X.production.o
 _SSPIF 63 0 ABS 0 - dist/default/production\pic_project.X.production.o
@@ -468,10 +592,10 @@ _TRISD 88 0 ABS 0 - dist/default/production\pic_project.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 lcd_send_cmd@cmd 24 0 BANK0 1 cstackBANK0 dist/default/production\pic_project.X.production.o
-__initialization FF0 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
-__pbssBANK0 34 0 BANK0 1 bssBANK0 dist/default/production\pic_project.X.production.o
+__initialization FEC 0 CODE 0 cinit dist/default/production\pic_project.X.production.o
+__pbssBANK0 38 0 BANK0 1 bssBANK0 dist/default/production\pic_project.X.production.o
 __pstrings 6 0 STRING 0 strings dist/default/production\pic_project.X.production.o
-__end_of_I2C_Multi_Send AA6 0 CODE 0 text9 dist/default/production\pic_project.X.production.o
+__end_of_I2C_Multi_Send 83C 0 CODE 0 text12 dist/default/production\pic_project.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -497,26 +621,30 @@ __end_of_I2C_Multi_Send AA6 0 CODE 0 text9 dist/default/production\pic_project.X
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7F8 FF0 8 2
-text1 0 4E3 9C6 1F 2
-text2 0 4C5 98A 1E 2
-text3 0 679 CF2 A8 2
-text4 0 502 A04 22 2
-text5 0 5CF B9E 44 2
-text6 0 58B B16 44 2
-text7 0 49F 93E 9 2
-text8 0 496 92C 9 2
-text9 0 524 A48 2F 2
-text10 0 4B5 96A 10 2
-text11 0 4A8 950 D 2
-text12 0 553 AA6 38 2
-text13 0 613 C26 66 2
-text14 0 48D 91A 9 2
-maintext 0 721 E42 D7 2
+cinit 0 7F6 FEC A 2
+text1 0 71C E38 DA 2
+text2 0 456 8AC 3A 2
+text3 0 50E A1C 44 2
+text4 0 39B 736 26 2
+text5 0 35B 6B6 1E 2
+text6 0 5B8 B70 8F 2
+text7 0 379 6F2 22 2
+text8 0 4CF 99E 3F 2
+text9 0 490 920 3F 2
+text10 0 335 66A 9 2
+text11 0 32C 658 9 2
+text12 0 3EF 7DE 2F 2
+text13 0 34B 696 10 2
+text14 0 33E 67C D 2
+text15 0 41E 83C 38 2
+text16 0 552 AA4 66 2
+text17 0 323 646 9 2
+text18 0 3C1 782 2E 2
+maintext 0 647 C8E D5 2
 cstackCOMMON 1 70 70 E 1
-cstackBANK0 1 20 20 16 1
+cstackBANK0 1 20 20 1C 1
 reset_vec 0 0 0 3 2
-strings 0 3 6 1F 2
+strings 0 3 6 36 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

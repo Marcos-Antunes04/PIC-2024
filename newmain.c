@@ -3,6 +3,8 @@
 #include <xc.h>
 #include <stdint.h>
 #include <pic16f877a.h>
+#include <stdio.h>
+#include <string.h>
 
 #pragma config FOSC = HS
 #pragma config WDTE = OFF 
@@ -124,7 +126,8 @@ void lcd_send_cmd (char cmd)
     I2C_Start();
     I2C_Multi_Send(0,DISPLAY_ADDR,data_t,sizeof(data_t));
     I2C_Stop();
-    __delay_ms(50);
+    //__delay_ms(50);
+    __delay_ms(1);
 	// HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
@@ -141,7 +144,8 @@ void lcd_send_data (char data)
 	I2C_Start();
     I2C_Multi_Send(0,DISPLAY_ADDR,data_t,sizeof(data_t));
     I2C_Stop();
-    __delay_ms(50);
+    //__delay_ms(50);
+    __delay_ms(1);
 	// HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
@@ -202,11 +206,14 @@ void lcd_send_string (char *str)
 }
 
 /* Global variable declarations*/
-uint16_t adc_value = 0;
+uint16_t adc_value_1 = 0;
+uint16_t adc_value_2 = 0;
 
 
 void main()
 {   
+  char str1[4];
+  char str2[4];
   // TRIS and PORT registers definitions
   TRISA = 0XFF;
   TRISB = 0x00;                 //PORTB as output
@@ -217,30 +224,28 @@ void main()
   I2C_Master_Init(100000);  
   // A/D converter module is powered up and ADC clock = Fosc/4
   ADC_Setup();
-  
-  __delay_ms(2000);
-  
   lcd_init();
   lcd_send_string("Hello World");
-  
-  __delay_ms(2000);
-  
-  lcd_put_cur(1,0);
-  
-  lcd_send_string("From Antunes");
-  
+  __delay_ms(1500);
   lcd_clear();
-  int row = 0;
-  int col = 0;
+  lcd_send_string("From Antunes");
+  lcd_put_cur(1,0);
+  lcd_send_string("And Matz");
+  __delay_ms(1500);
+  lcd_clear();
   
   while(1){
-      for(int i = 0; i<128;i++){
-          lcd_put_cur(row,col);
-          lcd_send_data(i+48);
-          col++;
-          if(col>15) {row++; col=0;}
-          if(row>1) row=0;
-          __delay_ms(50);
-      }
+      //sprintf(str1,"%d",num);
+      adc_value_1 = ADC_Read(0);
+      __delay_ms(1);
+      adc_value_2 = ADC_Read(1);
+      sprintf(str1,"%d",adc_value_1);
+      sprintf(str2,"%d",adc_value_2);
+      lcd_put_cur(0,0);
+      lcd_send_string(str1);
+      lcd_put_cur(1,0);  
+      lcd_send_string(str1);
+      __delay_ms(250);
+      lcd_clear();      
   }
 }

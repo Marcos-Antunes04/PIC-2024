@@ -1857,6 +1857,104 @@ extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\\pic\\include\\xc.h" 2 3
 # 3 "newmain.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdint.h" 1 3
+# 4 "newmain.c" 2
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 2 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\__null.h" 1 3
+# 6 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 12 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 9 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 86 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 2 3
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 6 "newmain.c" 2
 
 
 #pragma config FOSC = HS
@@ -1869,6 +1967,7 @@ extern __bank0 __bit __timeout;
 #pragma config CP = OFF
 
 
+
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
         PORTB = 0xff;
@@ -1879,90 +1978,221 @@ void blink_led_nx(int n){
 }
 
 void I2C_Master_Init(const unsigned long c){
+  SSPCON = 0b00101000;
+  SSPCON2 = 0x00;
+  SSPSTAT = 0x00;
+  SSPADD = (20000000/(4*c))-1;
   TRISCbits.TRISC3 = 1;
   TRISCbits.TRISC4 = 1;
-  SSPCON = 0b00101000;
-  SSPADD = (20000000/(4*c))-1;
-
 }
 
-void waitmssp(){
-    while(!SSPIF);
-    SSPIF=0;
-}
-
-void I2C_Master_Start()
+void I2C_IDLE()
 {
-  SSPCON2bits.SEN = 1;
-  while(SEN);
-  PIR1bits.SSPIF = 0;
-  waitmssp();
+  while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
-void I2C_Master_RepeatedStart()
+void I2C_Start()
 {
-  SSPCON2bits.RSEN = 1;
-  waitmssp();
+I2C_IDLE();
+SSPCON2bits.SEN = 1;
 }
 
-void I2C_Master_Stop()
+void I2C_Stop()
 {
-  SSPCON2bits.PEN = 1;
-  while(PEN);
-  return;
-
+I2C_IDLE();
+SSPCON2bits.PEN = 1;
 }
 
-void I2C_Master_Write(unsigned char d)
+void I2C_Restart()
 {
-  SSPBUF = d;
-  waitmssp();
+I2C_IDLE();
+SSPCON2bits.RSEN = 1;
 }
 
-unsigned short I2C_Master_Read(uint8_t a)
+void I2C_ACK(void)
 {
-  unsigned short temp;
-  waitmssp();
-  RCEN = 1;
-  waitmssp();
-  temp = SSPBUF;
-  waitmssp();
-  ACKDT = (a)?0:1;
-  ACKEN = 1;
-  return temp;
+  I2C_IDLE();
+  SSPCON2bits.ACKDT = 0;
+  SSPCON2bits.ACKEN = 1;
+}
+void I2C_NACK(void)
+{
+I2C_IDLE();
+SSPCON2bits.ACKDT = 1;
+SSPCON2bits.ACKEN = 1;
 }
 
-void i2c_init(){
-    TRISC = 0xff;
-    SSPCON = 0x28;
+unsigned char I2C_Write(unsigned char Data)
+{
+I2C_IDLE();
+SSPBUF = Data;
+I2C_IDLE();
+return ACKSTAT;
 }
 
-void i2c_write(char data){
-    SSPCON2bits.SEN = 1;
-    while(SEN);
-    PIR1bits.SSPIF = 0;
+unsigned char I2C_Read_Byte(void)
+{
+SSPCON2bits.RCEN = 1;
+while(!SSPIF);
+SSPIF = 0;
+return SSPBUF;
+}
 
-    SSPBUF = 0xAA;
+void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
+    uint8_t send = (uint8_t) ((address << 1) & (0b11111110));
+    I2C_Write(send);
+    for(int n = 0; n < size; n++){
+        I2C_Write(data[n]);
+    }
+}
 
-    while(!SSPIF);
-    PIR1bits.SSPIF = 0;
-# 101 "newmain.c"
-    SSPCON2bits.PEN = 1;
-    while(PEN);
-    return;
+void ADC_Setup(void){
+  ADCON0 = 0X81;
+  ADCON1 = 0b10000000;
+}
+uint16_t ADC_Read(int channel){
+    if(channel > 7)
+        return 0;
+
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+
+    ADCON0 |= channel<<3;
+    GO_DONE = 1;
+    while(GO_DONE);
+    return (uint16_t)((ADRESH << 8) + ADRESL);
+}
+
+void lcd_send_cmd (char cmd)
+{
+  char data_u, data_l;
+ uint8_t data_t[4];
+ data_u = (cmd&0xf0);
+ data_l = ((cmd<<4)&0xf0);
+ data_t[0] = data_u|0x0C;
+ data_t[1] = data_u|0x08;
+ data_t[2] = data_l|0x0C;
+ data_t[3] = data_l|0x08;
+    I2C_Start();
+    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
+    I2C_Stop();
+    _delay((unsigned long)((50)*(20000000/4000.0)));
 
 }
+
+void lcd_send_data (char data)
+{
+ char data_u, data_l;
+ uint8_t data_t[4];
+ data_u = (data&0xf0);
+ data_l = ((data<<4)&0xf0);
+ data_t[0] = data_u|0x0D;
+ data_t[1] = data_u|0x09;
+ data_t[2] = data_l|0x0D;
+ data_t[3] = data_l|0x09;
+ I2C_Start();
+    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
+    I2C_Stop();
+    _delay((unsigned long)((50)*(20000000/4000.0)));
+
+}
+
+void lcd_clear (void)
+{
+ lcd_send_cmd (0x80);
+ for (int i=0; i<70; i++)
+ {
+  lcd_send_data (' ');
+ }
+}
+
+void lcd_put_cur(int row, int col)
+{
+    switch (row)
+    {
+        case 0:
+            col |= 0x80;
+            break;
+        case 1:
+            col |= 0xC0;
+            break;
+    }
+
+    lcd_send_cmd (col);
+}
+
+
+void lcd_init (void)
+{
+
+ _delay((unsigned long)((50)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((5)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x30);
+ _delay((unsigned long)((10)*(20000000/4000.0)));
+ lcd_send_cmd (0x20);
+ _delay((unsigned long)((10)*(20000000/4000.0)));
+
+
+ lcd_send_cmd (0x28);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x08);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x01);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x06);
+ _delay((unsigned long)((1)*(20000000/4000.0)));
+ lcd_send_cmd (0x0C);
+}
+
+void lcd_send_string (char *str)
+{
+ while (*str) lcd_send_data (*str++);
+}
+
+
+uint16_t adc_value = 0;
+
 
 void main()
 {
+
+  TRISA = 0XFF;
   TRISB = 0x00;
   TRISD = 0x00;
   PORTD = 0x00;
+  PORTB = 0X00;
+
+  I2C_Master_Init(100000);
+
+  ADC_Setup();
+
+  float num = 1024.0;
+  char str1[4];
+  char str2[4];
+  _delay((unsigned long)((2000)*(20000000/4000.0)));
+
+  lcd_init();
+  lcd_send_string("Hello World");
+
+  _delay((unsigned long)((2000)*(20000000/4000.0)));
+
+  lcd_put_cur(1,0);
+
+  lcd_send_string("From Antunes");
+
+  lcd_clear();
 
   while(1){
-      blink_led_nx(2);
-      I2C_Master_Init(100000);
-      I2C_Master_Start();
-      I2C_Master_Write(0x33);
+      sprintf(str1,&num);
+
+      lcd_put_cur(0,0);
+      lcd_send_string("ACELEROMETRO");
+      lcd_put_cur(1,0);
+      lcd_send_string(str1);
   }
 }
