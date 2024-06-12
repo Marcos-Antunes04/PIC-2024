@@ -1998,9 +1998,7 @@ extern char * strrichr(const char *, int);
 #pragma config CPD = OFF
 #pragma config WRT = OFF
 #pragma config CP = OFF
-
-
-
+# 26 "newmain.c"
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
         PORTB = 0xff;
@@ -2079,165 +2077,66 @@ void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
     }
 }
 
-void ADC_Setup(void){
-  ADCON0 = 0X81;
-  ADCON1 = 0b10000000;
-}
-uint16_t ADC_Read(int channel){
-    if(channel > 7)
-        return 0;
 
-    ADCON0bits.CHS0 = 0;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 0;
-
-    ADCON0 |= channel<<3;
-    GO_DONE = 1;
-    while(GO_DONE);
-    return (uint16_t)((ADRESH << 8) + ADRESL);
+uint16_t *I2C_Multi_Read(){
+    uint16_t Accel[2];
+    return Accel;
 }
 
-void lcd_send_cmd (char cmd)
+void cmd(unsigned char a)
 {
-  char data_u, data_l;
- uint8_t data_t[4];
- data_u = (cmd&0xf0);
- data_l = ((cmd<<4)&0xf0);
- data_t[0] = data_u|0x0C;
- data_t[1] = data_u|0x08;
- data_t[2] = data_l|0x0C;
- data_t[3] = data_l|0x08;
-    I2C_Start();
-    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
-    I2C_Stop();
-
-    _delay((unsigned long)((5)*(20000000/4000.0)));
-
+    PORTB=a;
+    RC0=0;
+    RC1=0;
+    RC2=1;
+    for(int j=0;j<1000;j++);
+    RC2=0;
 }
 
-void lcd_send_data (char data)
+void lcd_init()
 {
- char data_u, data_l;
- uint8_t data_t[4];
- data_u = (data&0xf0);
- data_l = ((data<<4)&0xf0);
- data_t[0] = data_u|0x0D;
- data_t[1] = data_u|0x09;
- data_t[2] = data_l|0x0D;
- data_t[3] = data_l|0x09;
- I2C_Start();
-    I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
-    I2C_Stop();
-
-    _delay((unsigned long)((1)*(20000000/4000.0)));
-
+    cmd(0x38);
+    cmd(0x0c);
+    cmd(0x06);
+    cmd(0x80);
 }
 
-void lcd_clear (void)
+void dat(unsigned char b)
 {
- lcd_send_cmd (0x80);
- for (int i=0; i<70; i++)
- {
-  lcd_send_data (' ');
- }
+    PORTB=b;
+    RC0=1;
+    RC1=0;
+    RC2=1;
+    for(int j=0;j<1000;j++);
+    RC2=0;
 }
-
-void lcd_put_cur(int row, int col)
+void show(unsigned char *s)
 {
-    switch (row)
-    {
-        case 0:
-            col |= 0x80;
-            break;
-        case 1:
-            col |= 0xC0;
-            break;
+    while(*s) {
+        dat(*s++);
     }
-
-    lcd_send_cmd (col);
 }
-
-
-void lcd_init (void)
-{
-
- _delay((unsigned long)((50)*(20000000/4000.0)));
- lcd_send_cmd (0x30);
- _delay((unsigned long)((5)*(20000000/4000.0)));
- lcd_send_cmd (0x30);
- _delay((unsigned long)((1)*(20000000/4000.0)));
- lcd_send_cmd (0x30);
- _delay((unsigned long)((10)*(20000000/4000.0)));
- lcd_send_cmd (0x20);
- _delay((unsigned long)((10)*(20000000/4000.0)));
-
-
- lcd_send_cmd (0x28);
- _delay((unsigned long)((1)*(20000000/4000.0)));
- lcd_send_cmd (0x08);
- _delay((unsigned long)((1)*(20000000/4000.0)));
- lcd_send_cmd (0x01);
- _delay((unsigned long)((1)*(20000000/4000.0)));
- _delay((unsigned long)((1)*(20000000/4000.0)));
- lcd_send_cmd (0x06);
- _delay((unsigned long)((1)*(20000000/4000.0)));
- lcd_send_cmd (0x0C);
-}
-
-void lcd_send_string (char *str)
-{
- while (*str) lcd_send_data (*str++);
-}
-
-
-float GetVoltage(uint16_t adc_read){
-    float conversion = 0.0f;
-    conversion = (float) (adc_read * 5 / 1024);
-    return conversion;
-}
-
-
-uint16_t adc_value_1 = 0;
-uint16_t adc_value_2 = 0;
-
 
 void main()
 {
-  char str1[4];
-  char str2[4];
+  unsigned int i;
 
-  TRISA = 0XFF;
   TRISB = 0x00;
-  TRISD = 0x00;
-  PORTD = 0x00;
   PORTB = 0X00;
+  TRISC0= 0;
+  TRISC1= 0;
+  TRISC2= 0;
+
 
   I2C_Master_Init(100000);
 
-  ADC_Setup();
+
   lcd_init();
-  lcd_send_string("ACELEROMETRO");
-  _delay((unsigned long)((1500)*(20000000/4000.0)));
-  lcd_clear();
-  lcd_put_cur(0,0);
-  lcd_send_string("Antunes");
-  lcd_put_cur(1,0);
-  lcd_send_string("And Matz");
-  _delay((unsigned long)((1500)*(20000000/4000.0)));
-
-  while(1){
-
-      lcd_clear();
-      adc_value_1 = ADC_Read(0);
-      adc_value_2 = ADC_Read(1);
-
-      sprintf(str1,"%d",adc_value_1);
-      sprintf(str2,"%d",adc_value_2);
-      lcd_put_cur(0,0);
-      lcd_send_string(str1);
-      _delay((unsigned long)((1)*(20000000/4000.0)));
-      lcd_put_cur(1,0);
-      lcd_send_string(str2);
-      _delay((unsigned long)((200)*(20000000/4000.0)));
+  cmd(0x8A);
+  show("Antunes-Plot");
+  while(1) {
+      for(i=0;i<15000;i++);
+      cmd(0x18);
+      for(i=0;i<15000;i++);
   }
 }

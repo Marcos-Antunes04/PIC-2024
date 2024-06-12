@@ -21,7 +21,7 @@
 #define rs RC0
 #define rw RC1
 #define en RC2
-#define delay for(j=0;j<1000;j++)
+#define delay for(int j=0;j<1000;j++)
 
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
@@ -103,17 +103,10 @@ void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
 
 // Must be implementted
 uint16_t *I2C_Multi_Read(){
-    return ;
+    uint16_t Accel[2];
+    return Accel;
 }
 
-
-void lcd_init()
-{
-    cmd(0x38);
-    cmd(0x0c);
-    cmd(0x06);
-    cmd(0x80);
-}
 void cmd(unsigned char a)
 {
     PORTB=a;
@@ -123,6 +116,15 @@ void cmd(unsigned char a)
     delay;
     en=0;
 }
+
+void lcd_init()
+{
+    cmd(0x38);
+    cmd(0x0c);
+    cmd(0x06);
+    cmd(0x80);
+}
+
 void dat(unsigned char b)
 {
     PORTB=b;
@@ -145,8 +147,8 @@ void main()
   // TRIS and PORT registers definitions
   TRISB = 0x00;                 //PORTB as output
   PORTB = 0X00;
-  TRISC0= 0
-  TRISC1= 0
+  TRISC0= 0;
+  TRISC1= 0;
   TRISC2= 0;
   
   // Configures MSSP peripheral in I2C Master mode

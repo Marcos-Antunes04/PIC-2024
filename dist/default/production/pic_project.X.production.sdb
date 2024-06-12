@@ -5,91 +5,36 @@
 [d frameptr 0 ]
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
-"505 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
-[v _sprintf sprintf `(i  1 e 2 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
-[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\xxtofl.c
-[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 "6 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"29 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
+"35 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
-"38
+"44
 [v _I2C_IDLE I2C_IDLE `(v  1 e 1 0 ]
-"43
-[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
-"49
-[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
-"74
+"80
 [v _I2C_Write I2C_Write `(uc  1 e 1 0 ]
-"90
-[v _I2C_Multi_Send I2C_Multi_Send `(v  1 e 1 0 ]
-"98
-[v _ADC_Setup ADC_Setup `(v  1 e 1 0 ]
-"102
-[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
-"116
-[v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
-"134
-[v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
-"152
-[v _lcd_clear lcd_clear `(v  1 e 1 0 ]
-"161
-[v _lcd_put_cur lcd_put_cur `(v  1 e 1 0 ]
-"177
+"110
+[v _cmd cmd `(v  1 e 1 0 ]
+"120
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
-"203
-[v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
-"220
+"128
+[v _dat dat `(v  1 e 1 0 ]
+"137
+[v _show show `(v  1 e 1 0 ]
+"144
 [v _main main `(v  1 e 1 0 ]
 "216 C:/Program Files/Microchip/MPLABX/v6.10/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-"340
-[v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "808
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "815
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-"1152
-[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-"1159
-[v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S80 . 1 `uc 1 ADON 1 0 :1:0 
-`uc 1 . 1 0 :1:1 
-`uc 1 GO_nDONE 1 0 :1:2 
-`uc 1 CHS 1 0 :3:3 
-`uc 1 ADCS 1 0 :2:6 
-]
-"1190
-[s S86 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 GO 1 0 :1:2 
-`uc 1 CHS0 1 0 :1:3 
-`uc 1 CHS1 1 0 :1:4 
-`uc 1 CHS2 1 0 :1:5 
-`uc 1 ADCS0 1 0 :1:6 
-`uc 1 ADCS1 1 0 :1:7 
-]
-[s S94 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 nDONE 1 0 :1:2 
-]
-[s S97 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 GO_DONE 1 0 :1:2 
-]
-[u S100 . 1 `S80 1 . 1 0 `S86 1 . 1 0 `S94 1 . 1 0 `S97 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES100  1 e 1 @31 ]
-"1325
-[v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1375
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 [s S33 . 1 `uc 1 TRISC0 1 0 :1:0 
@@ -104,8 +49,6 @@
 "1454
 [u S42 . 1 `S33 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES42  1 e 1 @135 ]
-"1499
-[v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1754
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
 [s S54 . 1 `uc 1 SEN 1 0 :1:0 
@@ -124,171 +67,71 @@
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "1830
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-"2222
-[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
-"2229
-[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
 "2384
 [v _ACKSTAT ACKSTAT `VEb  1 e 0 @1166 ]
-"2579
-[v _GO_DONE GO_DONE `VEb  1 e 0 @250 ]
+"2708
+[v _RC0 RC0 `VEb  1 e 0 @56 ]
+"2711
+[v _RC1 RC1 `VEb  1 e 0 @57 ]
+"2714
+[v _RC2 RC2 `VEb  1 e 0 @58 ]
 "2828
 [v _SSPIF SSPIF `VEb  1 e 0 @99 ]
-"358 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
-[v _dpowers dpowers `DC[5]ui  1 s 10 dpowers ]
-"216 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-[v _adc_value_1 adc_value_1 `ui  1 e 2 0 ]
-"217
-[v _adc_value_2 adc_value_2 `ui  1 e 2 0 ]
-"220
+"2963
+[v _TRISC0 TRISC0 `VEb  1 e 0 @1080 ]
+"2966
+[v _TRISC1 TRISC1 `VEb  1 e 0 @1081 ]
+"2969
+[v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
+"144 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
 [v _main main `(v  1 e 1 0 ]
 {
-"223
-[v main@str2 str2 `[4]uc  1 a 4 20 ]
-"222
-[v main@str1 str1 `[4]uc  1 a 4 16 ]
-"259
+"146
+[v main@i i `ui  1 a 2 8 ]
+"166
 } 0
-"505 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\doprnt.c
-[v _sprintf sprintf `(i  1 e 2 0 ]
+"137
+[v _show show `(v  1 e 1 0 ]
 {
-[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
-"545
-[v sprintf@val val `ui  1 a 2 9 ]
-"512
-[v sprintf@c c `uc  1 a 1 12 ]
-"521
-[v sprintf@prec prec `c  1 a 1 8 ]
-"525
-[v sprintf@flag flag `uc  1 a 1 7 ]
-"507
-[v sprintf@ap ap `[1]*.4v  1 a 1 6 ]
-"505
-[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
-[v sprintf@f f `*.24DCuc  1 p 1 0 ]
-"550
-[v sprintf@sp sp `*.4uc  1 a 1 11 ]
-"1567
+[v show@s s `*.24uc  1 a 1 wreg ]
+[v show@s s `*.24uc  1 a 1 wreg ]
+[v show@s s `*.24uc  1 a 1 3 ]
+"142
 } 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"128
+[v _dat dat `(v  1 e 1 0 ]
 {
-"10
-[v ___lwmod@counter counter `uc  1 a 1 11 ]
-"5
-[v ___lwmod@divisor divisor `ui  1 p 2 7 ]
-[v ___lwmod@dividend dividend `ui  1 p 2 9 ]
-"25
+[v dat@b b `uc  1 a 1 wreg ]
+"134
+[v dat@j j `i  1 a 2 1 ]
+"128
+[v dat@b b `uc  1 a 1 wreg ]
+"130
+[v dat@b b `uc  1 a 1 0 ]
+"136
 } 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\lwdiv.c
-[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-{
-"10
-[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
-"11
-[v ___lwdiv@counter counter `uc  1 a 1 6 ]
-"5
-[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
-[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
-"30
-} 0
-"203 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-[v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
-{
-[v lcd_send_string@str str `*.26uc  1 p 2 11 ]
-"206
-} 0
-"161
-[v _lcd_put_cur lcd_put_cur `(v  1 e 1 0 ]
-{
-[v lcd_put_cur@row row `i  1 p 2 7 ]
-[v lcd_put_cur@col col `i  1 p 2 9 ]
-"174
-} 0
-"177
+"120
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
 {
-"201
+"126
 } 0
-"152
-[v _lcd_clear lcd_clear `(v  1 e 1 0 ]
+"110
+[v _cmd cmd `(v  1 e 1 0 ]
 {
-"155
-[v lcd_clear@i i `i  1 a 2 11 ]
-"159
-} 0
-"134
-[v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
-{
-[v lcd_send_data@data data `uc  1 a 1 wreg ]
-"137
-[v lcd_send_data@data_t data_t `[4]uc  1 a 4 0 ]
-"136
-[v lcd_send_data@data_l data_l `uc  1 a 1 6 ]
-[v lcd_send_data@data_u data_u `uc  1 a 1 5 ]
-"134
-[v lcd_send_data@data data `uc  1 a 1 wreg ]
-"138
-[v lcd_send_data@data data `uc  1 a 1 4 ]
-"150
-} 0
+[v cmd@a a `uc  1 a 1 wreg ]
 "116
-[v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
-{
-[v lcd_send_cmd@cmd cmd `uc  1 a 1 wreg ]
-"119
-[v lcd_send_cmd@data_t data_t `[4]uc  1 a 4 0 ]
+[v cmd@j j `i  1 a 2 1 ]
+"110
+[v cmd@a a `uc  1 a 1 wreg ]
+"112
+[v cmd@a a `uc  1 a 1 0 ]
 "118
-[v lcd_send_cmd@data_l data_l `uc  1 a 1 6 ]
-[v lcd_send_cmd@data_u data_u `uc  1 a 1 5 ]
-"116
-[v lcd_send_cmd@cmd cmd `uc  1 a 1 wreg ]
-"120
-[v lcd_send_cmd@cmd cmd `uc  1 a 1 4 ]
-"132
 } 0
-"49
-[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
-{
-"53
-} 0
-"43
-[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
-{
-"47
-} 0
-"90
-[v _I2C_Multi_Send I2C_Multi_Send `(v  1 e 1 0 ]
-{
-"93
-[v I2C_Multi_Send@n n `i  1 a 2 7 ]
-"91
-[v I2C_Multi_Send@send send `uc  1 a 1 6 ]
-"90
-[v I2C_Multi_Send@address address `uc  1 p 1 1 ]
-[v I2C_Multi_Send@data data `*.4uc  1 p 1 2 ]
-[v I2C_Multi_Send@size size `i  1 p 2 3 ]
-"96
-} 0
-"74
-[v _I2C_Write I2C_Write `(uc  1 e 1 0 ]
-{
-[v I2C_Write@Data Data `uc  1 a 1 wreg ]
-[v I2C_Write@Data Data `uc  1 a 1 wreg ]
-"76
-[v I2C_Write@Data Data `uc  1 a 1 0 ]
-"80
-} 0
-"38
-[v _I2C_IDLE I2C_IDLE `(v  1 e 1 0 ]
-{
-"41
-} 0
-"29
+"35
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
 [v I2C_Master_Init@c c `DCul  1 p 4 0 ]
-"36
+"42
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -301,15 +144,4 @@
 [v ___lldiv@divisor divisor `ul  1 p 4 0 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "30
-} 0
-"98 C:\Users\xboxw\MPLABXProjects\pic_project.X\newmain.c
-[v _ADC_Setup ADC_Setup `(v  1 e 1 0 ]
-{
-"101
-} 0
-"102
-[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
-{
-[v ADC_Read@channel channel `i  1 p 2 0 ]
-"114
 } 0
