@@ -17,6 +17,12 @@
 #define _XTAL_FREQ 20000000
 #define DISPLAY_ADDR 0X27
 
+// Defines used in GPIO Display
+#define rs RC0
+#define rw RC1
+#define en RC2
+#define delay for(j=0;j<1000;j++)
+
 void blink_led_nx(int n){
     for(int i = 0; i < n;i++){
         PORTB = 0xff;
@@ -100,20 +106,59 @@ uint16_t *I2C_Multi_Read(){
     return ;
 }
 
+
+void lcd_init()
+{
+    cmd(0x38);
+    cmd(0x0c);
+    cmd(0x06);
+    cmd(0x80);
+}
+void cmd(unsigned char a)
+{
+    PORTB=a;
+    rs=0;
+    rw=0;
+    en=1;
+    delay;
+    en=0;
+}
+void dat(unsigned char b)
+{
+    PORTB=b;
+    rs=1;
+    rw=0;
+    en=1;
+    delay;
+    en=0;
+}
+void show(unsigned char *s)
+{
+    while(*s) {
+        dat(*s++);
+    }
+}
+
 void main()
 {   
-  char str1[4];
-  char str2[4];
-
+  unsigned int i;
   // TRIS and PORT registers definitions
   TRISB = 0x00;                 //PORTB as output
   PORTB = 0X00;
-
+  TRISC0= 0
+  TRISC1= 0
+  TRISC2= 0;
+  
   // Configures MSSP peripheral in I2C Master mode
   I2C_Master_Init(100000);
-  
-  
-  while(1){
-
-  }
+    
+    
+  lcd_init();
+  cmd(0x8A); //forcing the cursor at 0x8A position
+  show("Antunes-Plot");
+  while(1) {
+      for(i=0;i<15000;i++);
+      cmd(0x18);
+      for(i=0;i<15000;i++);       
+  }     
 }
