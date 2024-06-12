@@ -2196,22 +2196,6 @@ float GetVoltage(uint16_t adc_read){
     return conversion;
 }
 
-char *GetString(float value, int channel){
-    char *source;
-    char *string;
-    if (channel == 0){
-        *string = "X = ";
-        sprintf(source,"%.2f",value);
-        string = strcat(string, source);
-    }
-    if (channel == 1){
-        *string = "Y = ";
-        sprintf(source,"%.2f",value);
-        string = strcat(string, source);
-    }
-    return string;
-}
-
 
 uint16_t adc_value_1 = 0;
 uint16_t adc_value_2 = 0;
@@ -2219,8 +2203,8 @@ uint16_t adc_value_2 = 0;
 
 void main()
 {
-  char str0[15];
-  char str1[15];
+  char str1[4];
+  char str2[4];
 
   TRISA = 0XFF;
   TRISB = 0x00;
@@ -2242,18 +2226,18 @@ void main()
   _delay((unsigned long)((1500)*(20000000/4000.0)));
 
   while(1){
+
       lcd_clear();
       adc_value_1 = ADC_Read(0);
-      _delay((unsigned long)((1)*(20000000/4000.0)));
       adc_value_2 = ADC_Read(1);
-      *str0 = GetString(GetVoltage(ADC_Read(0)),0);
-      *str1 = GetString(GetVoltage(ADC_Read(1)),1);
+
+      sprintf(str1,"%d",adc_value_1);
+      sprintf(str2,"%d",adc_value_2);
       lcd_put_cur(0,0);
-      lcd_send_string(str0);
+      lcd_send_string(str1);
       _delay((unsigned long)((1)*(20000000/4000.0)));
       lcd_put_cur(1,0);
-      lcd_send_string(str1);
+      lcd_send_string(str2);
       _delay((unsigned long)((200)*(20000000/4000.0)));
-# 288 "newmain.c"
   }
 }
