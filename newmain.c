@@ -95,165 +95,25 @@ void I2C_Multi_Send(uint8_t cmd, uint8_t address, uint8_t *data, int size){
     }
 }
 
-void ADC_Setup(void){
-  ADCON0 = 0X81;
-  ADCON1 = 0b10000000;
+// Must be implementted
+uint16_t *I2C_Multi_Read(){
+    return ;
 }
-uint16_t ADC_Read(int channel){
-    if(channel > 7)     // Channel range is 0 to 7
-        return 0;
-    
-    ADCON0bits.CHS0 = 0;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 0;
-    
-    ADCON0 |= channel<<3;
-    GO_DONE = 1;
-    while(GO_DONE);
-    return (uint16_t)((ADRESH << 8) + ADRESL);
-}
-
-void lcd_send_cmd (char cmd)
-{
-  char data_u, data_l;
-	uint8_t data_t[4];
-	data_u = (cmd&0xf0);
-	data_l = ((cmd<<4)&0xf0);
-	data_t[0] = data_u|0x0C;  //en=1, rs=0
-	data_t[1] = data_u|0x08;  //en=0, rs=0
-	data_t[2] = data_l|0x0C;  //en=1, rs=0
-	data_t[3] = data_l|0x08;  //en=0, rs=0
-    I2C_Start();
-    I2C_Multi_Send(0,DISPLAY_ADDR,data_t,sizeof(data_t));
-    I2C_Stop();
-    //__delay_ms(50);
-    __delay_ms(5);
-	// HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
-}
-
-void lcd_send_data (char data)
-{
-	char data_u, data_l;
-	uint8_t data_t[4];
-	data_u = (data&0xf0);
-	data_l = ((data<<4)&0xf0);
-	data_t[0] = data_u|0x0D;  //en=1, rs=0
-	data_t[1] = data_u|0x09;  //en=0, rs=0
-	data_t[2] = data_l|0x0D;  //en=1, rs=0
-	data_t[3] = data_l|0x09;  //en=0, rs=0
-	I2C_Start();
-    I2C_Multi_Send(0,DISPLAY_ADDR,data_t,sizeof(data_t));
-    I2C_Stop();
-    //__delay_ms(50);
-    __delay_ms(1);
-	// HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
-}
-
-void lcd_clear (void)
-{
-	lcd_send_cmd (0x80);
-	for (int i=0; i<70; i++)
-	{
-		lcd_send_data (' ');
-	}
-}
-
-void lcd_put_cur(int row, int col)
-{
-    switch (row)
-    {
-        case 0:
-            col |= 0x80;
-            break;
-        case 1:
-            col |= 0xC0;
-            break;
-    }
-
-    lcd_send_cmd (col);
-}
-
-
-void lcd_init (void)
-{
-	// 4 bit initialisation
-	__delay_ms(50);
-	lcd_send_cmd (0x30);
-	__delay_ms(5);
-	lcd_send_cmd (0x30);
-	__delay_ms(1);
-	lcd_send_cmd (0x30);
-	__delay_ms(10);
-	lcd_send_cmd (0x20);  // 4bit mode
-	__delay_ms(10);
-
-  // dislay initialisation
-	lcd_send_cmd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
-	__delay_ms(1);
-	lcd_send_cmd (0x08); //Display on/off control --> D=0,C=0, B=0  ---> display off
-	__delay_ms(1);
-	lcd_send_cmd (0x01);  // clear display
-	__delay_ms(1);
-	__delay_ms(1);
-	lcd_send_cmd (0x06); //Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
-	__delay_ms(1);
-	lcd_send_cmd (0x0C); //Display on/off control --> D = 1, C and B = 0. (Cursor and blink, last two bits)
-}
-
-void lcd_send_string (char *str)
-{
-	while (*str) lcd_send_data (*str++);
-}
-
-// Ideally should be tested with multimeter
-float GetVoltage(uint16_t adc_read){
-    float conversion =  0.0f;
-    conversion = (float) (adc_read * 5 / 1024);
-    return conversion;
-}
-
-/* Global variable declarations*/
-uint16_t adc_value_1 = 0;
-uint16_t adc_value_2 = 0;
-
 
 void main()
 {   
   char str1[4];
   char str2[4];
+
   // TRIS and PORT registers definitions
-  TRISA = 0XFF;
   TRISB = 0x00;                 //PORTB as output
-  TRISD = 0x00;                 //PORTD as output
-  PORTD = 0x00;                 //All LEDs OFF
   PORTB = 0X00;
+
   // Configures MSSP peripheral in I2C Master mode
-  I2C_Master_Init(100000);  
-  // A/D converter module is powered up and ADC clock = Fosc/4
-  ADC_Setup();
-  lcd_init();
-  lcd_send_string("ACELEROMETRO");
-  __delay_ms(1500);
-  lcd_clear();
-  lcd_put_cur(0,0);
-  lcd_send_string("Antunes");
-  lcd_put_cur(1,0);
-  lcd_send_string("And Matz");
-  __delay_ms(1500);
+  I2C_Master_Init(100000);
+  
   
   while(1){
 
-      lcd_clear();
-      adc_value_1 = ADC_Read(0);
-      adc_value_2 = ADC_Read(1);
-      
-      sprintf(str1,"%d",adc_value_1);
-      sprintf(str2,"%d",adc_value_2);
-      lcd_put_cur(0,0);
-      lcd_send_string(str1);
-      __delay_ms(1);
-      lcd_put_cur(1,0);  
-      lcd_send_string(str2);
-      __delay_ms(200);
   }
 }
