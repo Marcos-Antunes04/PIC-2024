@@ -127,7 +127,7 @@ void lcd_send_cmd (char cmd)
     I2C_Multi_Send(0,DISPLAY_ADDR,data_t,sizeof(data_t));
     I2C_Stop();
     //__delay_ms(50);
-    __delay_ms(1);
+    __delay_ms(5);
 	// HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
@@ -205,6 +205,29 @@ void lcd_send_string (char *str)
 	while (*str) lcd_send_data (*str++);
 }
 
+// Ideally should be tested with multimeter
+float GetVoltage(uint16_t adc_read){
+    float conversion =  0.0f;
+    conversion = (float) (adc_read * 5 / 1024);
+    return conversion;
+}
+
+char *GetString(float value, int channel){
+    char *source;
+    char *string;
+    if (channel == 0){
+        *string = "X = ";
+        sprintf(source,"%.2f",value);
+        string = strcat(string, source);
+    }
+    if (channel == 1){
+        *string = "Y = ";
+        sprintf(source,"%.2f",value);
+        string = strcat(string, source);
+    }
+    return string;
+}
+
 /* Global variable declarations*/
 uint16_t adc_value_1 = 0;
 uint16_t adc_value_2 = 0;
@@ -212,8 +235,8 @@ uint16_t adc_value_2 = 0;
 
 void main()
 {   
-  char str1[4];
-  char str2[4];
+  char str0[15];
+  char str1[15];
   // TRIS and PORT registers definitions
   TRISA = 0XFF;
   TRISB = 0x00;                 //PORTB as output
@@ -225,17 +248,31 @@ void main()
   // A/D converter module is powered up and ADC clock = Fosc/4
   ADC_Setup();
   lcd_init();
-  lcd_send_string("Hello World");
+  lcd_send_string("ACELEROMETRO");
   __delay_ms(1500);
   lcd_clear();
-  lcd_send_string("From Antunes");
+  lcd_put_cur(0,0);
+  lcd_send_string("Antunes");
   lcd_put_cur(1,0);
   lcd_send_string("And Matz");
   __delay_ms(1500);
-  lcd_clear();
   
   while(1){
-      //sprintf(str1,"%d",num);
+      lcd_clear();
+      adc_value_1 = ADC_Read(0);
+      __delay_ms(1);
+      adc_value_2 = ADC_Read(1);
+      *str0 = GetString(GetVoltage(ADC_Read(0)),0);
+      *str1 = GetString(GetVoltage(ADC_Read(1)),1);
+      lcd_put_cur(0,0);
+      lcd_send_string(str0);
+      __delay_ms(1);
+      lcd_put_cur(1,0);  
+      lcd_send_string(str1);
+      __delay_ms(200);
+ 
+      /*
+      lcd_clear();
       adc_value_1 = ADC_Read(0);
       __delay_ms(1);
       adc_value_2 = ADC_Read(1);
@@ -243,9 +280,10 @@ void main()
       sprintf(str2,"%d",adc_value_2);
       lcd_put_cur(0,0);
       lcd_send_string(str1);
+      __delay_ms(1);
       lcd_put_cur(1,0);  
-      lcd_send_string(str1);
-      __delay_ms(250);
-      lcd_clear();      
+      lcd_send_string(str2);
+      __delay_ms(200);
+      */
   }
 }

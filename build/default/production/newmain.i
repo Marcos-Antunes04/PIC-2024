@@ -1956,6 +1956,39 @@ extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 # 6 "newmain.c" 2
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\string.h" 1 3
+# 14 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\string.h" 3
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+# 36 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\string.h" 3
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+# 7 "newmain.c" 2
+
 
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
@@ -2078,7 +2111,7 @@ void lcd_send_cmd (char cmd)
     I2C_Multi_Send(0,0X27,data_t,sizeof(data_t));
     I2C_Stop();
 
-    _delay((unsigned long)((1)*(20000000/4000.0)));
+    _delay((unsigned long)((5)*(20000000/4000.0)));
 
 }
 
@@ -2157,14 +2190,37 @@ void lcd_send_string (char *str)
 }
 
 
+float GetVoltage(uint16_t adc_read){
+    float conversion = 0.0f;
+    conversion = (float) (adc_read * 5 / 1024);
+    return conversion;
+}
+
+char *GetString(float value, int channel){
+    char *source;
+    char *string;
+    if (channel == 0){
+        *string = "X = ";
+        sprintf(source,"%.2f",value);
+        string = strcat(string, source);
+    }
+    if (channel == 1){
+        *string = "Y = ";
+        sprintf(source,"%.2f",value);
+        string = strcat(string, source);
+    }
+    return string;
+}
+
+
 uint16_t adc_value_1 = 0;
 uint16_t adc_value_2 = 0;
 
 
 void main()
 {
-  char str1[4];
-  char str2[4];
+  char str0[15];
+  char str1[15];
 
   TRISA = 0XFF;
   TRISB = 0x00;
@@ -2176,28 +2232,28 @@ void main()
 
   ADC_Setup();
   lcd_init();
-  lcd_send_string("Hello World");
-
-  _delay((unsigned long)((2000)*(20000000/4000.0)));
-
-  lcd_put_cur(1,0);
-
-  lcd_send_string("From Antunes");
-
+  lcd_send_string("ACELEROMETRO");
+  _delay((unsigned long)((1500)*(20000000/4000.0)));
   lcd_clear();
+  lcd_put_cur(0,0);
+  lcd_send_string("Antunes");
+  lcd_put_cur(1,0);
+  lcd_send_string("And Matz");
+  _delay((unsigned long)((1500)*(20000000/4000.0)));
 
   while(1){
-
+      lcd_clear();
       adc_value_1 = ADC_Read(0);
       _delay((unsigned long)((1)*(20000000/4000.0)));
       adc_value_2 = ADC_Read(1);
-      sprintf(str1,"%d",adc_value_1);
-      sprintf(str2,"%d",adc_value_2);
+      *str0 = GetString(GetVoltage(ADC_Read(0)),0);
+      *str1 = GetString(GetVoltage(ADC_Read(1)),1);
       lcd_put_cur(0,0);
-      lcd_send_string(str1);
+      lcd_send_string(str0);
+      _delay((unsigned long)((1)*(20000000/4000.0)));
       lcd_put_cur(1,0);
       lcd_send_string(str1);
-      _delay((unsigned long)((250)*(20000000/4000.0)));
-      lcd_clear();
+      _delay((unsigned long)((200)*(20000000/4000.0)));
+# 288 "newmain.c"
   }
 }
